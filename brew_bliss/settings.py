@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net']
 
+CSRF_TRUSTED_ORIGINS = ['https://8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net']
+
 
 # Application definition
 
@@ -37,6 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.sites',
+
+    # Required by django-allauth - https://docs.allauth.org/en/dev/installation/quickstart.html
+ 
+    'allauth',
+    'allauth.account',
+
+    #PROJECT APPS
+
+
 ]
 
 MIDDLEWARE = [
@@ -47,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+     # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'brew_bliss.urls'
@@ -59,13 +77,40 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.request', # required by django all-auth DON'T REMOVE
+                'django.contrib.auth.context_processors.auth', 
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+
+# https://docs.allauth.org/en/dev/installation/quickstart.html
+
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+SITE_ID = 1
+
+# Sends email verification to console from 
+# https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/ea7fe2688a0d97db4e469b672d5cb35e5835ff69/boutique_ado/settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'brew_bliss.wsgi.application'
 
