@@ -1,0 +1,10 @@
+html {
+    height: 100%;
+}
+
+body{
+    background:url('/media/colorful-aroma-tea-cups-arranged-circular-position-wooden-desk.jpg') no-repeat center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    color: #555;
+}
