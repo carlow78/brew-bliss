@@ -11,5 +11,10 @@ As a **role** I can **capability** so that **received benefit**
 
 ***ACCEPTANCE CRITERIA:***
 
-* [x] Acceptance criteria 1
-* [ ] Acceptance criteria 2
+1. Acceptance Criteria
+2. Acceptance Criteria
+
+*Tasks*
+
+* [x] Task 1
+* [ ] Task 2
