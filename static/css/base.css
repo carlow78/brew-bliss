@@ -1,10 +1,92 @@
-html {
+:root {
+    --primary-color: #000;
+    --secondary-color: #222;
+    --text-color: #555;
+    --white: #fff;
+  }
+  
+  html, body {
     height: 100%;
-}
-
-body{
-    background:url('/media/colorful-aroma-tea-cups-arranged-circular-position-wooden-desk.jpg') no-repeat center fixed;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: url('/media/colorful-aroma-tea-cups-arranged-circular-position-wooden-desk.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
-    color: #555;
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .logo-font {
+    text-transform: uppercase;
+  }
+  
+  .main-logo-link {
+    width: fit-content;
+  }
+
+  .dropdown-toggle::after {
+    display: none;
 }
+  
+  .btn {
+    min-width: 260px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .lets-brew-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .lets-brew-button:hover,
+  .lets-brew-button:focus {
+    background-color: var(--secondary-color);
+  }
+  
+  .text-primary {
+    color: var(--primary-color) !important;
+  }
+  
+  .border-primary {
+    border: 1px solid var(--primary-color) !important;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 80%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .fixed-top-desktop-only {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+    }
+  
+    .header-container {
+      padding-top: 164px;
+    }
+  }
