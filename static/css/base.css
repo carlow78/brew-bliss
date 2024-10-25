@@ -13,7 +13,7 @@
   }
   
   body {
-    background: url('/media/colorful-aroma-tea-cups-arranged-circular-position-wooden-desk.jpg') no-repeat center center fixed;
+    background: url('/media/main-background-image.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
     color: var(--text-color);
@@ -45,7 +45,8 @@
     min-width: 260px;
     transition: background-color 0.3s ease;
   }
-  
+
+
   .lets-brew-button {
     background-color: var(--white);
     color: var(--black);
