@@ -83,6 +83,15 @@
     margin: 0 auto;
     padding: 0 15px;
   }
+
+  /* set images to same size */
+  .bordered-image {
+    
+    width: 300px; 
+    height: 300px; 
+    object-fit: cover; 
+
+}
   
   @media (min-width: 1200px) {
     .container {
