@@ -1,31 +1,36 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 
 def all_products(request):
-    # show all products and search function
-
+    # show all products view, Plus search and sort queries.
+    
     products = Product.objects.all()
-    query = request.GET.get('q', '')
+    query = None
+    categories = None
 
     if request.GET:
-        if query:
-            search_fields = ['name', 'description']
-            search_query = Q()
+       
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
 
-            for field in search_fields:
-                search_query |= Q(**{f"{field}__icontains": query})
+        if 'q' in request.GET:
+            query = request.GET['q'].strip()
+            if query:
+                queries = Q(name__icontains=query) | Q(description__icontains=query)
+                products = products.filter(queries).distinct()
+            else:
+                messages.error(request, "Search criteria is missing. Please enter search term.")
 
-            products = products.filter(search_query)
-        else:
-            messages.error(request, "Please enter a search term.")
-            return redirect(reverse('products'))
 
     context = {
-        'products': products,
-        'search_term': query
+        'products':products,
+        'search_term': query,
+        'current_categories': categories,
     }
 
 
