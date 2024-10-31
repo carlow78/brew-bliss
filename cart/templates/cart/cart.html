@@ -24,9 +24,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    {% if bag_items %}
+                    {% if cart_items %}
                         <div class="table-responsive rounded">
-                                
+                                {{ cart_items }}
                         </div>
                     {% else %}
                         <div class="text-center empty-bag-message">
