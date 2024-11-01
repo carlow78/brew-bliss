@@ -18,11 +18,11 @@
               Teas
           </a>
           <ul class="dropdown-menu" aria-labelledby="teas-link">
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea,leaf,leaves">Tea Leaves</a></li>
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea,powder">Tea Powder</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea,powder,leaf,leaves">All Teas</a></li>
-          </ul>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=tea_leaf">Tea Leaves</a></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=tea_powder">Tea Powder</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'products' %}?category=tea_powder,tea_leaf">All Teas</a></li>
+        </ul>
       </li>
 
       <li class="nav-item dropdown">
@@ -30,11 +30,11 @@
               Accessories
           </a>
           <ul class="dropdown-menu" aria-labelledby="accessories-link">
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=weigh,weighing,measure,measuring">Weighing & Measuring</a></li>
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea,storage">Tea Storage</a></li>
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea,strainer">Tea Strainers</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}?category=weigh_measure">Weighing & Measuring</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea_storage">Tea Storage</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}?category=tea_strainer">Tea Strainers</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'products' %}?category=all,accessory,accessories">All Accessories</a></li>
+              <li><a class="dropdown-item" href="{% url 'products' %}?category=weigh_measure,tea_storage_strainer">All Accessories</a></li>
           </ul>
       </li>
   </ul>
