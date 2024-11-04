@@ -31,6 +31,7 @@
                                 <thead class="text-black">
                                     <tr>
                                         <th scope="col">Product</th>
+                                        <th scope="col">Weight</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Subtotal</th>
@@ -43,6 +44,11 @@
                                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                                 <div class="mt-2">
                                                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                                </div>
+                                            </td>
+                                            <td class="p-3 w-25">
+                                                <div class="mt-2">
+                                                    <p class="my-0"><strong>{% if item.product.has_weight %}{{ item.weight|upper }}{% else %}N/A{% endif %}</strong></p>
                                                 </div>
                                             </td>
                                             <td class="py-3">
@@ -129,6 +135,7 @@
                                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                                 </div>
                             </td>
+
                             <td class="py-3">
                                 <p class="my-0">€{{ item.product.price|floatformat:2 }}</p>
                             </td>
