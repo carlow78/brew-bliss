@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    
+    (function($) {
+        'use strict';
+    
+        const MIN_QUANTITY = 1;
+        const MAX_QUANTITY = 99;
+    
+        function handleEnableDisable(itemId, weight) {
+            const selector = weight ? `.weight_${itemId}_${weight}` : `.id_qty_${itemId}`;
+            const currentValue = parseInt($(selector).val());
+    
+            const decrementSelector = weight ? `.decrement-weight_${itemId}_${weight}` : `.decrement-qty_${itemId}`;
+            const incrementSelector = weight ? `.increment-weight_${itemId}_${weight}` : `.increment-qty_${itemId}`;
+    
+            $(decrementSelector).prop('disabled', currentValue <= MIN_QUANTITY);
+            $(incrementSelector).prop('disabled', currentValue >= MAX_QUANTITY);
+        }
+    
+        function updateQuantity(itemId, weight, increment) {
+            const inputSelector = weight ? `.input-group-${itemId} input[data-size='${weight}']` : `.input-group-${itemId} input[name='quantity']`;
+            const $inputs = $(inputSelector);
+            
+            $inputs.each(function() {
+                const currentValue = parseInt($(this).val());
+                $(this).val(currentValue + (increment ? 1 : -1));
+            });
+    
+            handleEnableDisable(itemId, weight);
+        }
+    
+        function initializeQuantityInputs() {
+            $('.qty_input').each(function() {
+                const itemId = $(this).data('item_id');
+                const weight = $(this).data('weight');
+                handleEnableDisable(itemId, weight);
+            });
+        }
+    
+        function setupEventListeners() {
+            $('.increment-qty').click(function(e) {
+                e.preventDefault();
+                const itemId = $(this).data('item_id');
+                const weight = $(this).data('weight');
+                updateQuantity(itemId, weight, true);
+            });
+    
+            $('.decrement-qty').click(function(e) {
+                e.preventDefault();
+                const itemId = $(this).data('item_id');
+                const weight = $(this).data('weight');
+                updateQuantity(itemId, weight, false);
+            });
+        }
+
+        $(document).ready(function() {
+            initializeQuantityInputs();
+            setupEventListeners();
+        });
+    
+    })
+
+    </script>

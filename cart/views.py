@@ -1,21 +1,21 @@
 from django.shortcuts import render, redirect
 
+# Create your views here.
+
+
 def view_cart(request):
-    # View for shopping cart
-    
+    """ A view that renders the cart contents page """
+
     return render(request, 'cart/cart.html')
 
 def add_to_cart(request, item_id):
-
-    # View to control quantity of an item in cart
+    """ Add a quantity of the specified product to the shopping cart """
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-
     weight = None
     if 'product_weight' in request.POST:
         weight = request.POST['product_weight']
-
     cart = request.session.get('cart', {})
 
     if weight:
@@ -34,4 +34,5 @@ def add_to_cart(request, item_id):
 
     request.session['cart'] = cart
     return redirect(redirect_url)
-
+    
+    

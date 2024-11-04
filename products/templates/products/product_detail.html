@@ -31,7 +31,9 @@
         <div class="col-12 col-md-6 col-lg-4">
             <div class="product-details-container mb-5 mt-md-5">
                 <p class="mb-0">{{ product.name }}</p>
-                <p class="lead mb-0 text-right font-weight-bold">€{{ product.price }}</p>
+                <p class="lead mb-0 text-right font-weight-bold">
+                    €<span id="product-price" data-base-price="{{ product.price }}">{{ product.price }}</span>
+                </p>
                 {% if product.category %}
                     <p class="small mt-1 mb-0">
                         <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -62,46 +64,50 @@
                                 </select>
                             </div>
                         {% endif %}
-
-                    <div class="form-content">
-                        <div class="quantity-section">
-                            <label for="id_qty_{{ product.id }}" class="form-label">Quantity:</label>
-                            <div class="quantity-input">
-                                
-                                    <input 
-                                        class="form-control quantity-value" 
-                                        type="number" 
-                                        name="quantity" 
-                                        value="1" 
-                                        min="1" 
-                                        max="99" 
-                                        data-item-id="{{ product.id }}" 
-                                        id="id_qty_{{ product.id }}"
-                                        aria-label="Product quantity"
-                                    >
-                               
-                            </div>
-                        </div>
-                <br>
-                        <div class="action-buttons">
-                            <a href="{% url 'products' %}" class="btn btn-outline-black">
-                                <i class="fas fa-chevron-left"></i>
-                                Continue Shopping
-                            </a>
-                            <button type="submit" class="btn btn-black">
-                                <i class="fas fa-shopping-bag"></i>
-                                Add to Cart
-                            </button>
-                        </div>
-                
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        {% endwith %}
                     </div>
-                </form>
             </div>
         </div>
 
-    </div>
+        <div class="form-content">
+            <div class="quantity-section mb-3">
+                <label for="id_qty_{{ product.id }}" class="form-label">Quantity:</label>
+                <input 
+                    class="form-control quantity-value" 
+                    type="number" 
+                    name="quantity" 
+                    value="1" 
+                    min="1" 
+                    max="99" 
+                    data-item-id="{{ product.id }}" 
+                    id="id_qty_{{ product.id }}"
+                    aria-label="Product quantity"
+                >
+            </div>
+            <div class="action-buttons">
+                <a href="{% url 'products' %}" class="btn btn-outline-black">
+                    <i class="fas fa-chevron-left"></i>
+                    Continue Shopping
+                </a>
+                <button type="submit" class="btn btn-black">
+                    <i class="fas fa-shopping-bag"></i>
+                    Add to Cart
+                </button>
+            </div>
+            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+        </div>
+            {% endwith %}   
+                </form>
 </div>
+        
+
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% include 'products/includes/qty_input_script.html' %}
+{% include 'products/includes/weight_input_script.html' %}
 
 {% endblock %}
