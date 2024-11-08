@@ -21,18 +21,6 @@ def cart_contents(request):
                 'quantity': item_data,
                 'product': product,
             })
-        else:
-            product = get_object_or_404(Product, pk=item_id)
-            for weight, quantity in item_data['items_by_weight'].items():
-                total += quantity * product.price
-                product_count += quantity
-                cart_items.append({
-                    'item_id': item_id,
-                    'quantity': item_data,
-                    'product': product,
-                    'weight': weight,
-                })
-
     
     if request.path == '/checkout/': 
         if total < settings.FREE_DELIVERY_THRESHOLD:
@@ -49,6 +37,7 @@ def cart_contents(request):
         'delivery': delivery,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'final_total': final_total,
+
     }
 
     return context

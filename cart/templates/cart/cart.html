@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% load mathfilters %}
+
 
 {% block page_header %}
     <div class="container header-container">
@@ -31,7 +31,6 @@
                                 <thead class="text-black">
                                     <tr>
                                         <th scope="col">Product</th>
-                                        <th scope="col">Weight</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Subtotal</th>
@@ -44,11 +43,6 @@
                                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                                 <div class="mt-2">
                                                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                                </div>
-                                            </td>
-                                            <td class="p-3 w-25">
-                                                <div class="mt-2">
-                                                    <p class="my-0"><strong>{% if item.product.has_weight %}{{ item.weight|upper }}{% else %}N/A{% endif %}</strong></p>
                                                 </div>
                                             </td>
                                             <td class="py-3">
@@ -71,9 +65,6 @@
                                                 <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}">
                                                     <small>Remove</small>
                                                 </a>
-                                            </td>
-                                            <td class="py-3">
-                                                <p class="my-0">€{{ item.product.price|mul:item.quantity|floatformat:2 }}</p>
                                             </td>
                                         </tr>
                                     {% empty %}
@@ -155,7 +146,7 @@
                                 </a>
                             </td>
                             <td class="py-3">
-                                <p class="my-0">€{{ item.product.price|mul:item.quantity|floatformat:2 }}</p>
+                                <p class="my-0">€{{ item.product.price|floatformat:2 }}</p>
                             </td>
                         </tr>
                     </tbody>
