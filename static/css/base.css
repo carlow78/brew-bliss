@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #000;
-    --secondary-color: #222;
+    --primary-color: #513e30;
+    --secondary-color: #a2a967;
     --text-color: #555;
     --cream:  #a08974;
     --white: #fff;
@@ -19,7 +19,7 @@
     top: 0;
     left: 0;
     position: fixed;
-    background: white;
+    background: #dac7ae;
     z-index: -1;
 
   }
@@ -43,7 +43,7 @@
   }
   
   .logo-font {
-    text-transform: uppercase;
+    font-family: 'Sour Gummy', sans-serif;
   }
   
   .main-logo-link {
@@ -59,13 +59,13 @@
   }
 
 
-  .lets-brew-button {
+  .browse-now-button {
     background-color: var(--white);
     color: var(--black);
   }
   
-  .lets-brew-button:hover,
-  .lets-brew-button:focus {
+  .browse-now-button:hover,
+  .browse-now-button:focus {
     background-color: var(--secondary-color);
   }
   

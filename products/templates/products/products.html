@@ -15,13 +15,7 @@
     <header class="row">
         <div class="col text-center mt-3">
             <h2 class="logo-font mb-3">Tea</h2>
-            <div class="category-badges">
-                {% for category in current_categories %}
-                    <a href="{% url 'products' %}?category={{ category.name }}" class="badge badge-pill badge-light border border-dark m-1">
-                        {{ category.display_name }}
-                    </a>
-                {% endfor %}
-        </div>
+            
     </header>
 
     <div class="row align-items-center mb-4">
