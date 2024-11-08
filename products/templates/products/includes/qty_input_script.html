@@ -1,63 +1,75 @@
 <script type="text/javascript">
     
-    (function($) {
-        'use strict';
-    
-        const MIN_QUANTITY = 1;
-        const MAX_QUANTITY = 99;
-    
-        function handleEnableDisable(itemId, weight) {
-            const selector = weight ? `.weight_${itemId}_${weight}` : `.id_qty_${itemId}`;
-            const currentValue = parseInt($(selector).val());
-    
-            const decrementSelector = weight ? `.decrement-weight_${itemId}_${weight}` : `.decrement-qty_${itemId}`;
-            const incrementSelector = weight ? `.increment-weight_${itemId}_${weight}` : `.increment-qty_${itemId}`;
-    
-            $(decrementSelector).prop('disabled', currentValue <= MIN_QUANTITY);
-            $(incrementSelector).prop('disabled', currentValue >= MAX_QUANTITY);
-        }
-    
-        function updateQuantity(itemId, weight, increment) {
-            const inputSelector = weight ? `.input-group-${itemId} input[data-size='${weight}']` : `.input-group-${itemId} input[name='quantity']`;
-            const $inputs = $(inputSelector);
-            
-            $inputs.each(function() {
-                const currentValue = parseInt($(this).val());
-                $(this).val(currentValue + (increment ? 1 : -1));
-            });
-    
-            handleEnableDisable(itemId, weight);
-        }
-    
-        function initializeQuantityInputs() {
-            $('.qty_input').each(function() {
-                const itemId = $(this).data('item_id');
-                const weight = $(this).data('weight');
-                handleEnableDisable(itemId, weight);
-            });
-        }
-    
-        function setupEventListeners() {
-            $('.increment-qty').click(function(e) {
-                e.preventDefault();
-                const itemId = $(this).data('item_id');
-                const weight = $(this).data('weight');
-                updateQuantity(itemId, weight, true);
-            });
-    
-            $('.decrement-qty').click(function(e) {
-                e.preventDefault();
-                const itemId = $(this).data('item_id');
-                const weight = $(this).data('weight');
-                updateQuantity(itemId, weight, false);
-            });
-        }
+    class QuantityManager {
+    constructor() {
+        this.MIN_QUANTITY = 1;
+        this.MAX_QUANTITY = 99;
+        this.initializeQuantityInputs();
+        this.addEventListeners();
+    }
 
-        $(document).ready(function() {
-            initializeQuantityInputs();
-            setupEventListeners();
+    initializeQuantityInputs() {
+        const allQtyInputs = document.querySelectorAll('.qty_input');
+        allQtyInputs.forEach(input => {
+            const itemId = input.dataset.item_id;
+            this.handleEnableDisable(itemId);
         });
-    
-    })
+    }
 
+    addEventListeners() {
+        document.addEventListener('change', event => {
+            if (event.target.classList.contains('qty_input')) {
+                const itemId = event.target.dataset.item_id;
+                this.handleEnableDisable(itemId);
+            }
+        });
+
+        document.addEventListener('click', event => {
+            if (event.target.classList.contains('increment-qty')) {
+                event.preventDefault();
+                this.updateQuantity(event.target, 1);
+            } else if (event.target.classList.contains('decrement-qty')) {
+                event.preventDefault();
+                this.updateQuantity(event.target, -1);
+            }
+        });
+    }
+
+    handleEnableDisable(itemId) {
+        const input = document.querySelector(`.id_qty_${itemId}`);
+        if (!input) return;
+
+        const currentValue = parseInt(input.value);
+        const minusDisabled = currentValue <= this.MIN_QUANTITY;
+        const plusDisabled = currentValue >= this.MAX_QUANTITY;
+
+        const decrementButton = document.querySelector(`.decrement-qty_${itemId}`);
+        const incrementButton = document.querySelector(`.increment-qty_${itemId}`);
+
+        if (decrementButton) decrementButton.disabled = minusDisabled;
+        if (incrementButton) incrementButton.disabled = plusDisabled;
+    }
+
+    updateQuantity(button, change) {
+        const itemId = button.dataset.item_id;
+        const inputGroup = button.closest('.input-group');
+        if (!inputGroup) return;
+
+        const closestInput = inputGroup.querySelector('.qty_input');
+        if (!closestInput) return;
+
+        const currentValue = parseInt(closestInput.value);
+        const newValue = Math.max(this.MIN_QUANTITY, Math.min(this.MAX_QUANTITY, currentValue + change));
+
+        const allQuantityInputs = document.querySelectorAll(`.input-group-${itemId} input[name='quantity']`);
+        allQuantityInputs.forEach(input => input.value = newValue);
+
+        this.handleEnableDisable(itemId);
+    }
+}
+
+// Initialize the QuantityManager when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new QuantityManager();
+});
     </script>
