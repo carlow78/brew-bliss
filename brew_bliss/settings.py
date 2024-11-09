@@ -95,6 +95,8 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 # https://docs.allauth.org/en/dev/installation/quickstart.html
 
 AUTHENTICATION_BACKENDS = [
