@@ -81,7 +81,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 20px;
   }
 
   /* set images to same size */
@@ -98,7 +98,7 @@
 
 }
 
-/* ------------------------------- bootstrap toasts */
+/* ------------------------------- bootstrap toasts from CI's Boutique Ado's Walkthrough */
 
 .message-container {
   position: fixed;
@@ -126,11 +126,11 @@
   
   @media (min-width: 992px) {
     .fixed-top-desktop-only {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
     }
   
     .header-container {
