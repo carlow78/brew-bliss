@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from products.models import Product
-from django.http import HttpResponseRedirect
 
 
 def view_cart(request):
@@ -13,7 +12,7 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
 
-    product = Product.objects.get(pk=item_id)
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
@@ -33,7 +32,7 @@ def add_to_cart(request, item_id):
 def modify_cart(request, item_id):
     """Adjust the quantity of the specified product in the cart"""
 
-    product = Product.objects.get(pk=item_id)
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
@@ -54,7 +53,6 @@ def modify_cart(request, item_id):
 def remove_from_cart(request, item_id):
 
     # Remove from cart - this function remove all quantities of an item from cart
-
     cart = request.session.get('cart', {})
     if str(item_id) in cart:
         del cart[str(item_id)]

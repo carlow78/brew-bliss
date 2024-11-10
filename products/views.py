@@ -37,11 +37,12 @@ def all_products(request):
 
         if 'q' in request.GET:
             query = request.GET['q'].strip()
-            if query:
+            if not query:
+                messages.error(request, "Search criteria is missing. Please enter search term.")
+                return redirect (reverse('products'))
+                
                 queries = Q(name__icontains=query) | Q(description__icontains=query)
                 products = products.filter(queries).distinct()
-            else:
-                messages.error(request, "Search criteria is missing. Please enter search term.")
 
     current_sorting = f'{sortkey}_{direction}'
 
