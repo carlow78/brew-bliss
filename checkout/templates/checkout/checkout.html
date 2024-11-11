@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cart_tools %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
@@ -18,6 +19,7 @@
 
         <div class="container mb-2">
             <div class="row">
+
                 <!-- Order Summary Section -->
                 <div class="col-12 col-lg-6 order-lg-last mb-5">
                     <p class="text-muted">Order Summary ({{ product_count }})</p>
@@ -47,12 +49,13 @@
                                 <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                             </div>
                             <div class="col-3 text-right">
-                                <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                <p class="my-0 small text-muted">€{{ item.product.price | calc_subtotal:item.quantity }}</p>
                             </div>
                         </div>
                     {% endfor %}
             
                     <hr class="my-0">
+
                     <!-- Totals Section -->
                     <div class="row text-black text-right">
                         <div class="col-7 offset-2">
@@ -61,9 +64,9 @@
                             <p class="my-0">Overall Total:</p>
                         </div>
                         <div class="col-3">
-                            <p class="my-0">${{ total | floatformat:2 }}</p>
-                            <p class="my-0">${{ delivery | floatformat:2 }}</p>
-                            <p class="my-0"><strong>${{ final_total | floatformat:2 }}</strong></p>
+                            <p class="my-0">€{{ total | floatformat:2 }}</p>
+                            <p class="my-0">€{{ delivery | floatformat:2 }}</p>
+                            <p class="my-0"><strong>€{{ final_total | floatformat:2 }}</strong></p>
                         </div>
                     </div>
                 </div>
@@ -129,7 +132,7 @@
                             <p class="small text-danger my-0">
                                 <span class="icon"><i class="fas fa-exclamation-circle"></i></span>
                                 Your card will be charged with a total of 
-                                <strong>${{ final_total|floatformat:2 }}</strong>.
+                                <strong>€{{ final_total|floatformat:2 }}</strong>.
                             </p>
                         </div>
                     </form>

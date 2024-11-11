@@ -28,7 +28,8 @@ def cart_contents(request):
         else:
             delivery = 0
 
-    final_total = delivery + total
+    delivery_decimal = Decimal(str(delivery))
+    final_total = delivery_decimal + total
 
     context = {
         'cart_items': cart_items,

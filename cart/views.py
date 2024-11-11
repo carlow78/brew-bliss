@@ -40,7 +40,7 @@ def modify_cart(request, item_id):
         cart[item_id] = quantity
         messages.success(request, f"Updated quantity of {product.name} to {quantity}")
     elif quantity == 0:
-        messages.warning(request, f"Quantity cannot be zero. Please use the 'Remove' option to delete the item.")
+        messages.warning(request, f"Quantity cannot be Zero. Please use the 'Remove' option to delete the item.")
 
     else:
         item = cart.pop(item_id, None) 
