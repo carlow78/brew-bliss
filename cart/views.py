@@ -39,12 +39,15 @@ def modify_cart(request, item_id):
     if quantity > 0:
         cart[item_id] = quantity
         messages.success(request, f"Updated quantity of {product.name} to {quantity}")
+    elif quantity == 0:
+        messages.warning(request, f"Quantity cannot be zero. Please use the 'Remove' option to delete the item.")
+
     else:
         item = cart.pop(item_id, None) 
         if item:
-            messages.success(request, f"Removed item {cart[item_id]} from your cart")
+            messages.success(request, f"Removed {item['name']} from your cart")
         else:
-            messages.info(request, f"Item {cart[item_id]} was not in your cart")
+            messages.info(request, f"Item was not in your cart")
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
