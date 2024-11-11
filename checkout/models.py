@@ -2,8 +2,10 @@ import uuid
 
 from django.db import models
 from django.db.models import Sum
+from decimal import Decimal
 from django.conf import settings
 from products.models import Product
+
 
 class Order(models.Model):
     """
@@ -30,13 +32,16 @@ class Order(models.Model):
         
         return uuid.uuid4().hex.upper()
 
-
     def update_total(self):
 
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
-        self.final_total = self.order_total + self.delivery_cost
-        self.save()
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        if  self.order_total > settings.FREE_DELIVERY_THRESHOLD:
+            self.delivery_cost = 0
+        else:
+            self.delivery_cost = settings.STANDARD_DELIVERY
 
+        self.final_total = float(self.order_total) + self.delivery_cost
+        self.save()
 
     def save(self, *args, **kwargs):
         
@@ -47,13 +52,13 @@ class Order(models.Model):
     
         super().save(*args, **kwargs)
 
-
     def __str__(self):
         
         return self.order_number or "No Order Number"
 
 
 class OrderItem(models.Model):
+
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
