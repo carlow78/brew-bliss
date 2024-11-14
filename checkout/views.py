@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.models import AnonymousUser
 from django.contrib import messages
 from django.conf import settings
 from .forms import OrderForm
@@ -52,36 +53,46 @@ def checkout(request):
         }
         
         order_form = OrderForm(form_data)
+
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(cart)
-            for item_id, item_data in cart.items():
-                try:
-                    product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
+            order.save() 
+
+        if request.user.is_authenticated:
+                order.user_profile = UserProfile.objects.get(user=request.user)
+
+                order.save() 
+
+
+        for item_id, item_data in cart.items():
+            try:
+                product = Product.objects.get(id=item_id)
+                if isinstance(item_data, int):
+                    order_item = OrderItem(
+                        order=order,
+                        product=product,
+                        quantity=item_data,
+                    )
+                    order_item.save()
+                else:
+                    for size, quantity in item_data['items_by_size'].items():
                         order_item = OrderItem(
                             order=order,
                             product=product,
-                            quantity=item_data,
+                            quantity=quantity,
                         )
                         order_item.save()
-                    else:
-                        for size, quantity in item_data['items_by_size'].items():
-                            order_item = OrderItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                            )
-                            order_item.save()
-                except Product.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your cart wasn't found in our database. "
-                        "Please call us for assistance on +353110012345")
-                    )
-                    order.delete()
-                    return redirect(reverse('view_cart'))
+            except Product.DoesNotExist:
+                messages.error(request, (
+                    "One of the products in your cart wasn't found in our database. "
+                    "Please call us for assistance on +353110012345")
+                )
+                order.delete()
+                return redirect(reverse('view_cart'))
+
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
@@ -147,9 +158,13 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    profile = UserProfile.objects.get_or_create(user=request.user)[0]
-    order.user_profile = profile
-    order.save()
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        # Attach the user's profile to the order
+        order.user_profile = profile
+        order.save()
+
     # Save user information
     if save_info:
             profile_data = {
