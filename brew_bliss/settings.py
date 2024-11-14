@@ -31,9 +31,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net','https://brew-bliss-1195cd6a337d.herokuapp.com']
+ALLOWED_HOSTS = ['8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net','.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net', 'https://brew-bliss-1195cd6a337d.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net']
 
 
 # Application definition
