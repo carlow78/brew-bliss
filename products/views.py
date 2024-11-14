@@ -74,6 +74,11 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
 
+    #Allow superuser only to add
+     if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you have tried a store admin only request.')
+        return redirect(reverse('home'))
+
      if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -95,6 +100,11 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
+
+    #Allow superuser only to add
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you have tried a store admin only request.')
+        return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -121,6 +131,11 @@ def edit_product(request, product_id):
 @login_required
 def delete_product(request, product_id):
     # Delete product from store
+
+    #Allow superuser only to add
+     if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you have tried a store admin only request.')
+        return redirect(reverse('home'))    
 
         product = get_object_or_404(Product, pk=product_id)
         product.delete()
