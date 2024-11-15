@@ -1,0 +1,139 @@
+:root {
+    --primary-color: #513e30;
+    --secondary-color: #a2a967;
+    --text-color: #555;
+    --cream:  #a08974;
+    --white: #fff;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cover{
+
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+
+  }
+  
+  body {
+    background: url('/media/main-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .logo-font {
+    font-family: 'Sour Gummy', sans-serif;
+  }
+  
+  .main-logo-link {
+    width: fit-content;
+  }
+  .dropdown-toggle::after {
+    display: none;
+}
+  
+  .btn {
+    min-width: 260px;
+    transition: background-color 0.3s ease;
+  }
+
+
+  .browse-now-button {
+    background-color: var(--white);
+    color: var(--black);
+  }
+  
+  .browse-now-button:hover,
+  .browse-now-button:focus {
+    background-color: var(--secondary-color);
+  }
+  
+  .text-primary {
+    color: var(--primary-color) !important;
+  }
+  
+  .border-primary {
+    border: 1px solid var(--primary-color) !important;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* set images to same size */
+  .bordered-image {
+    
+    width: 300px; 
+    height: 300px; 
+    object-fit: cover; 
+
+}
+
+.update-link, .remove-item{
+  cursor: pointer;
+
+}
+
+/* ------------------------------- bootstrap toasts from CI's Boutique Ado's Walkthrough */
+
+.message-container {
+  position: fixed;
+  top: 72px;
+  right: 15px;
+  z-index: 99999999999;
+}
+
+.custom-toast {
+  overflow: visible;
+}
+
+.toast-capper {
+  height: 2px;
+}
+
+
+/* ------------------------------- Media queries */
+
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 80%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .fixed-top-desktop-only {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    }
+  
+    .header-container {
+      padding-top: 164px;
+    }
+  }

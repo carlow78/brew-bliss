@@ -14,7 +14,6 @@ from pathlib import Path
 
 import os
 import dj_database_url
-from django.conf import settings
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,6 +84,8 @@ MIDDLEWARE = [
 
      # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'brew_bliss.urls'
@@ -213,6 +214,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -238,9 +240,9 @@ if 'USE_AWS' in os.environ:
     AWS_S3_SIGNATURE_VERSION = 's3v4'
 
     # Static and media files
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     MEDIAFILES_LOCATION = 'media'
 
     # Override static and media URLs in production
