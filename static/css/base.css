@@ -116,11 +116,8 @@
   height: 2px;
 }
 
-
-/* ------------------------------- Media queries */
-
   
-/* -------------------------------- Media Queries */
+/* -------------------------------- Media Queries from CI Boutique Ado's Walkthrough */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
