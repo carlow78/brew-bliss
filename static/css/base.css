@@ -30,9 +30,11 @@
     height: calc(100vh - 164px);
     color: var(--text-color);
     font-family: 'Inter', sans-serif;
-    display: flex;
-    flex-direction: column;
-  }
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100vh;
+    }
+  
 
   .icon {
     align-items: center;
@@ -116,7 +118,46 @@
   height: 2px;
 }
 
-  
+/* --------------------- FOOTER CSS -------- */
+
+.footer {
+  background-color: var(--secondary-color);
+  padding: 10px 0; 
+  margin: 0;
+  height: auto; 
+  min-height: 50px; 
+}
+
+.footer-content {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.footer-content h2,h3,h4,h5 {
+  margin: 0; 
+}
+
+
+.footer-links {
+  display: flex;
+  gap: 10px; 
+}
+
+.footer-links a {
+
+  text-decoration: none;
+  margin: 0;
+}
+
+.footer hr {
+  margin: 5px 0; 
+  height: 1px; 
+}
+
 /* -------------------------------- Media Queries from CI Boutique Ado's Walkthrough */
 
 /* Slightly larger container on xl screens */

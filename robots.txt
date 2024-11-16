@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /checkout/
+Sitemap: https://brew-bliss-1195cd6a337d.herokuapp.com/sitemap.xml
