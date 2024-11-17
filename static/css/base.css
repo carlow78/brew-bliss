@@ -61,15 +61,7 @@
   }
 
 
-  .browse-now-button {
-    background-color: var(--white);
-    color: var(--black);
-  }
   
-  .browse-now-button:hover,
-  .browse-now-button:focus {
-    background-color: var(--secondary-color);
-  }
   
   .text-primary {
     color: var(--primary-color) !important;
