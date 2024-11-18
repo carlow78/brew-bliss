@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (render, redirect, reverse,
+                              get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import AnonymousUser
 from django.contrib import messages
@@ -48,10 +49,9 @@ def checkout(request):
             'town_or_city': request.POST['town_or_city'],
             'county': request.POST['county'],
             'postcode': request.POST['postcode'],
-            'country': request.POST['country'],      
-            
+            'country': request.POST['country'],
         }
-        
+
         order_form = OrderForm(form_data)
 
         if order_form.is_valid():
@@ -59,13 +59,12 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(cart)
-            order.save() 
+            order.save()
 
         if request.user.is_authenticated:
-                order.user_profile = UserProfile.objects.get(user=request.user)
+            order.user_profile = UserProfile.objects.get(user=request.user)
 
-                order.save() 
-
+            order.save()
 
         for item_id, item_data in cart.items():
             try:
@@ -87,15 +86,15 @@ def checkout(request):
                         order_item.save()
             except Product.DoesNotExist:
                 messages.error(request, (
-                    "One of the products in your cart wasn't found in our database. "
+                    "1 product in your cart wasn't found in our database. "
                     "Please call us for assistance on +353110012345")
                 )
                 order.delete()
                 return redirect(reverse('view_cart'))
 
-
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
@@ -115,12 +114,14 @@ def checkout(request):
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
     )
-
-     # Attempt to prefill the form with any info the user maintains in their profile
+    """
+     Attempt to prefill the form with any info the user
+     maintains in their profile
+    """
     if request.user.is_authenticated:
         try:
-                profile = UserProfile.objects.get(user=request.user)
-                order_form = OrderForm(initial={
+            profile = UserProfile.objects.get(user=request.user)
+            order_form = OrderForm(initial={
                     'full_name': profile.user.get_full_name(),
                     'email': profile.user.email,
                     'phone_number': profile.default_phone_number,
@@ -132,13 +133,12 @@ def checkout(request):
                     'county': profile.default_county,
                 })
         except UserProfile.DoesNotExist:
-                order_form = OrderForm()
-    else:
             order_form = OrderForm()
-
+    else:
+        order_form = OrderForm()
 
     if not stripe_public_key:
-        messages.warning(request, 'Stripe PK is missing. Is it set in your env?')
+        messages.warning(request, 'Stripe Public Key is missing.')
 
     order_form = OrderForm()
     template = 'checkout/checkout.html'
@@ -149,7 +149,6 @@ def checkout(request):
     }
 
     return render(request, template, context)
-
 
 
 def checkout_success(request, order_number):
@@ -167,7 +166,7 @@ def checkout_success(request, order_number):
 
     # Save user information
     if save_info:
-            profile_data = {
+        profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
                 'default_postcode': order.postcode,
@@ -176,11 +175,11 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
             }
-            user_profile_form = UserProfileForm(profile_data, instance=profile)
-            if user_profile_form.is_valid():
-                user_profile_form.save()
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
 
-    messages.success(request, f'Thank you. Your order has been successfully processed! \
+    messages.success(request, f'Thank you. Order has been processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 

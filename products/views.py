@@ -9,14 +9,12 @@ from .forms import ProductForm
 
 def all_products(request):
     # show all products view, Plus search and sort queries.
-    
+
     products = Product.objects.all()
     query = None
     categories = None
     sort = None
     direction = None
-   
-
 
     if request.GET:
 
@@ -46,8 +44,6 @@ def all_products(request):
 
             products = products.order_by(sortkey)
 
-
-
         if 'category' in request.GET:
 
             categories = request.GET['category'].split(',')
@@ -55,8 +51,6 @@ def all_products(request):
             products = products.filter(category__name__in=categories)
 
             categories = Category.objects.filter(name__in=categories)
-
-
 
         if 'q' in request.GET:
 
@@ -70,17 +64,11 @@ def all_products(request):
 
                 return redirect(reverse('products'))
 
-
-
             queries = Q(name__icontains=query) | Q(description__icontains=query)
 
             products = products.filter(queries)
 
-
-
     current_sorting = f'{sort}_{direction}'
-
-
 
     context = {
 
@@ -94,13 +82,11 @@ def all_products(request):
 
     }
 
-
-
     return render(request, 'products/products.html', context)
 
 
 def product_detail(request, product_id):
-    #A view to show individual product details
+    # A view to show individual product details
 
     product = get_object_or_404(Product, pk=product_id)
 
@@ -114,36 +100,34 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
 
-    #Allow superuser only to add
-     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you have tried a store admin only request.')
+    # Allow superuser only to add
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you have tried a admin only request.')
         return redirect(reverse('home'))
 
-     if request.method == 'POST':
+    if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            messages.success(request, 'Successfully added product to the store')
+            messages.success(request, 'Success adding product to the store')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please check your form for issues')
-     else:
-        form = ProductForm()
-        
-        template = 'products/add_product.html'
-        context = {
-        'form': form,
-    }
+            messages.error(request, 'Failed to add product. Form issues')
+    else:
+            form = ProductForm()
 
-     return render(request, template, context)
+    template = 'products/add_product.html'
+    context = {'form': form, }
+
+    return render(request, template, context)
 
 
 @login_required
 def edit_product(request, product_id):
 
-    #Allow superuser only to add
+    # Allow superuser only to add
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you have tried a store admin only request.')
+        messages.error(request, 'Sorry, store admin only request.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -154,7 +138,7 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please check form for errors.')
+            messages.error(request, 'Failed to update product. Form errors.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -172,10 +156,10 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     # Delete product from store
 
-    #Allow superuser only to add
-     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you have tried a store admin only request.')
-        return redirect(reverse('home'))    
+    # Allow superuser only to add
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you have tried admin only request.')
+        return redirect(reverse('home'))
 
         product = get_object_or_404(Product, pk=product_id)
         product.delete()

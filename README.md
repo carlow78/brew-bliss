@@ -29,7 +29,6 @@
   * [Custom Error Pages](#custom-error-pages)
   * [Features Left to Implement](#features-left-to-implement)
 - [Technologies Used](#technologies-used)
-- [External Python Packages Used](#external-python-packages-used)
 - [Ecommerce Business Model](#ecommerce-business-model)
 - [Search Engine Optimization (SEO) & Social Media Marketing](#search-engine-optimization--seo----social-media-marketing)
   * [Keywords](#keywords)
@@ -528,35 +527,24 @@ All the custom Python files passed PEP8 Validation using [CI Python Linter](http
 | checkout        | `apps.py`            | [✅ Pass](docs/images/validation/checkout-apps-py.jpg) |
 | checkout        | `forms.py`            | [✅ Pass](docs/images/validation/checkout-admin-py.jpg) |
 | checkout        | `models.py`            | [✅ Pass](docs/images/validation/checkout-models-py.jpg) |
-| checkout        | `orders_urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-orders-urls-py.jpg) |
-| checkout        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-urls-py.jpg) |
-| checkout        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-views-py.jpg) |
-| home        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/home-forms-py.jpg) |
-| home        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/home-views-py.jpg) |
-| products        | `admin.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-admin-py.jpg) |
-| products        | `context_processors.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-context-processors-py.jpg) |
-| products        | `admin.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-admin-py.jpg) |
-| products        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-views-py.jpg) |
-| products        | `models.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-models.py.jpg) |
-| products        | `signals.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-signals-py.jpg) |
-| products        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-urls-py.jpg) |
-| profiles        | `admin.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-admin-py.jpg) |
-| profiles        | `context_processors.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-context-processors-py.jpg) |
-| profiles        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-forms-py.jpg) |
-| profiles        | `models.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-models-py.jpg) |
-| profiles        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-urls-py.jpg) |
-| profiles        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-views-py.jpg) |
+| checkout        | `signals.py`            | [✅ Pass](docs/images/validation/checkout-signals-py.jpg) |
+| checkout        | `urls.py`            | [✅ Pass](docs/images/validation/checkout-urls-py.jpg) |
+| checkout        | `views.py`            | [✅ Pass](docs/images/validation/checkout-views-py.jpg) |
+| checkout        | `webhook_handlers.py`            | [✅ Pass](docs/images/validation/checkout-webhook-handler-py.jpg) |
+| home        | `views.py`            | [✅ Pass](docs/images/validation/home-views-py.jpg) |
+| products        | `admin.py`            | [✅ Pass](docs/images/validation/products-admin-py.jpg) |
+| products        | `forms.py`            | [✅ Pass](docs/images/validation/products-form-py.jpg) |
+| products        | `view.py`            | [✅ Pass](docs/images/validation/products-view-py.jpg) |
+| products        | `models.py`            | [✅ Pass](docs/images/validation/products-model-py.jpg) |
+| profiles        | `models.py`            | [✅ Pass](docs/images/validation/profiles-models-py.jpg) |
+| profiles        | `views.py`            | [✅ Pass](docs/images/validation/profile-views-py.jpg |
 
 
 #### JavaScript
 
 File | Result |
------|--------|
-`checkout_delivery.js` | [✅ Pass](docs/images/validation/js-hint-results/checkout-delivery-js.jpg) |
-`confirm_delete.js` | [✅ Pass](docs/images/validation/js-hint-results/confirm-delete-js.jpg) |
-`glowCookies.js` | [⚠️ Warnings (library)](docs/images/validation/js-hint-results/glowCookies-js.jpg) |
-`print_btn.js` | [✅ Pass](docs/images/validation/js-hint-results/print-btn-js.jpg) |
-`stripe_elements.js` | [✅ Pass](docs/images/validation/js-hint-results/stripe-elements-js.jpg) |
+
+`stripe_elements.js` | [✅ Pass](docs/images/validation/stripe-elements-js.jpg) |
 
 ---
 
@@ -566,7 +554,7 @@ The live deployed application can be found deployed on [Heroku](https://brew-bli
 
 ### PostgreSQL from Code Instiute Database
 
-This project uses for the PostgreSQL Database.
+This project uses PostgreSQL Database.
 
 To obtain your own Postgres Database, use this https://dbs.ci-dbs.net/ input your registered email address used to sign up to Code Institute. (Each student can have a maximum of 8 which are deleted after 18 months). You will then receive your PostgreSQL database URL which can be used for your website.
 
@@ -672,17 +660,17 @@ Once on the IAM page, follow these steps:
 		```
 	
 	- Click **Review Policy**.
-	- Suggested Name: `policy-coffeecrew` (policy + the project name)
+	- Suggested Name: `policy-coffeebliss` (policy + the project name)
 	- Provide a description:
 		- "Access to S3 Bucket for coffeecrew static files."
 	- Click **Create Policy**.
-- From **User Groups**, click your "group-coffeecrew".
+- From **User Groups**, click your "group-brewbliss".
 - Click **Attach Policy**.
 - Search for the policy you've just created ("policy-coffeecrew") and select it, then **Attach Policy**.
 - From **User Groups**, click **Add User**.
 	- Suggested Name: `user-coffeecrew` (user + the project name)
 - For "Select AWS Access Type", select **Programmatic Access**.
-- Select the group to add your new user to: `group-coffeecrew`
+- Select the group to add your new user to: `group-brewbliss`
 - Tags are optional, but you must click it to get to the **review user** page.
 - Click **Create User** once done.
 - You should see a button to **Download .csv**, so click it to save a copy on your system.
@@ -715,9 +703,9 @@ Deployment steps are as follows, after account setup:
 | --- | --- |
 | `AWS_ACCESS_KEY_ID` | insert your own AWS Access Key ID key here |
 | `AWS_SECRET_ACCESS_KEY` | insert your own AWS Secret Access key here |
-| `AWS_S3_REGION_NAME` | region name of the AWS region used (e.g 'eu-central-2')
+| `AWS_S3_REGION_NAME` | region name of the AWS region used (e.g 'eu-west-1')
 | `AWS_STORAGE_BUCKET_NAME` | name of the bucket in AWS
-| `DATABASE_URL` | insert your own ElephantSQL database URL here |
+| `DATABASE_URL` | insert your own PostgreSQL database URL here |
 | `DISABLE_COLLECTSTATIC` | 1 (*this is temporary, and can be removed for the final deployment*) |
 | `SECRET_KEY` | insert your Django secret key
 | `EMAIL_HOST_PASS` | insert your own Gmail API key here |
@@ -840,16 +828,15 @@ Davidindublin [CoffeeCrew](https://github.com/davidindub/coffeecrew?tab=readme-o
 [Three Spoon's](https://threespoons.ie/) website which I used for inspiration as well tea descriptions and tea leaf images. 
 
 
-
-
 ### Media
 
 - [Bootstrap Icons](https://icons.getbootstrap.com/) were used extensively in the project.
 -[Three Spoon's](https://threespoons.ie/) for tea descriptions and tea leaf images.
-- Stock images from [Unsplash](https://unsplash.com/), thanks to photographers [Rodrigo Flores](https://unsplash.com/@rodrigoflores_photo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Nathan Dumlao](https://unsplash.com/photos/QLkjP_W4d7c?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Gerson Cifuentes](https://unsplash.com/photos/HmZCtvtS6ds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Etty Fidele](https://unsplash.com/photos/oJpkjWcScyg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Taisiia Shestopa](https://unsplash.com/fr/@taisiia_shestopal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Milo Miloezger](https://unsplash.com/@miloezger?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Andrew Welch](https://unsplash.com/photos/1pZbNwlGzNY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), and [Goran Ivos](https://unsplash.com/photos/f7MtheMfksk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) for their beautiful photos.
+- Landing and newsletter images from [Freepik](https://freepik.com/),
+- Accessories images from [Amazon](https:amazon.co.uk)
 
   
   
 ### Acknowledgements
 
-- Thank you to my CI Mentor [Precious Ijege] for his help and suggestions and the Slack Community.
+- Thank you to my CI Mentor [Precious Ijege] for his help and suggestions, CI's Tutor Support, Stackover and Slack Communities.

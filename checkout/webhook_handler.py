@@ -18,8 +18,7 @@ class StripeWebhook_Handler:
     # Stripe webhook handler
 
     def __init__(self, request):
-        self.request = request   
-
+        self.request = request
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
@@ -30,27 +29,25 @@ class StripeWebhook_Handler:
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
-        )        
-
+        )
 
     def handle_event(self, event):
-        
+
         # Unexpected webhook event
-        
+
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)
 
     def handle_payment_intent_succeeded(self, event):
-        
+
         # Handle the payment_intent.succeeded webhook from Stripe
-        
+
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
@@ -61,11 +58,10 @@ class StripeWebhook_Handler:
             intent.latest_charge
         )
 
-        billing_details = stripe_charge.billing_details 
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
         final_total = round(stripe_charge.amount / 100, 2)
-       
-         # Clean data in the shipping details
+
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -79,7 +75,7 @@ class StripeWebhook_Handler:
                 profile.default_country = shipping_details.address.country
                 profile.default_postcode = shipping_details.address.postal_code
                 profile.default_town_or_city = shipping_details.address.city
-                profile.default_street_address1 = shipping_details.address.line1
+                profile.default_street_address1 = shipping_details.address.line1 
                 profile.default_street_address2 = shipping_details.address.line2
                 profile.default_county = shipping_details.address.state
                 profile.save()
@@ -110,7 +106,7 @@ class StripeWebhook_Handler:
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]}',
                 status=200)
         else:
             order = None
@@ -144,14 +140,13 @@ class StripeWebhook_Handler:
                     status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook recvd:{event["type"]} | SUCCESS:Created order',
             status=200)
 
-            
     def handle_payment_intent_payment_failed(self, event):
-        
+
         # Handle the payment_intent.payment_failed webhook from Stripe
-        
+
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)
