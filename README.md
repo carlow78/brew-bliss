@@ -430,9 +430,12 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 | Page 	| Performance 	| Accessibility 	| Best Practices 	| SEO 	|
 |---	|---	|---	|---	|---	|
 
-| [Landing Page](docs/images/validation/lighthouse-landing.jpg 	| 97 	| 88 	| 100 	| 100 	|
+| [Landing Page](docs/images/validation/lighthouse-landing.jpg) 	| 97 	| 88 	| 100 	| 100 	|
+
 | [Products List](docs/images/validation/lighthouse-products.jpg) 	| 86 	| 85 	| 100 	| 100 	|
+
 | [Product Detail](docs/images/validation/lighthouse-product-view.jpg) 	| 94 	| 91 	| 96 	| 100 	|
+
 | [Manage Products](docs/images/validation/lighthouse-manage.jpg) 	| 94 	| 89 	| 100 	| 100 	|
 
 </details>
@@ -444,27 +447,52 @@ Completed throughout the development of the project and tracked using [Github Is
 
 ### Challenges Faced
 
-Initially, I had hoped to provide Tea Leaf/Weights with differenting weights allowing users to buy tea leaves/powders in 5 increments starting at 100,200,300,400,500g. The price increasing by 2 euros for each increment which I did achieve using a script but after nearly 2 days trying to get the context_process cart to update with increments when a user chooses 200-500g I couldnt resolve so I had to shelf the idea. 
+Initially, I had hoped to provide Tea/Leaf/Weigh option with differenting weights allowing users to buy tea leaves/powders in 5 increments starting at 100,200,300,400,500g. The price increasing by 2 euros for each increment which I did achieve using a script but after nearly 2 days trying to get the context_process cart to update with increments when a user chooses 200-500g I couldnt resolve so I had to shelf the idea. 
 
 Inspiration for weighting tea -
 https://threespoons.ie/shop/tea/black-tea/assam-op-leaf-blend-black-tea/ 
+
+<b> This Item pricing started from €5.20 for 100g, €9.40 for 200g and 500g for €21.40.</b>
 
 I had issues connecting to my AWS bucket from Heroku to access/store my static and media project files. Since the Walkthrough was recorded 4 years the steps to create AWS S3 and IAM has changed greatly. I contacted tutor support twice for my first session after an hour of troubleshooting with the Tutor he sent me an updated documentation of the process stored on Google Docs but still no joy. After my second tutor session lasting another 1 hour there was still no joy. Before finishing the session he suggested trying the steps again and maybe try to downgrade Django 4.2 (from 5.3) which thankfully resolved to issue but this issue had set me back more time (2 days and approx 50 redeployments to heroku) which I was running out of.
 
 Finally the last main issue I encountered was the navigation hamburger menu not expanding on mobile (smaller) screens. I finally got the issue resolved after downgrading bootstrap JS CDNs from 5.3 to 5.2 in the base.html corejs section after finding this [Youtube](https://www.youtube.com/watch?v=a-VSiUtMayM&t=42s) video.
 
+
 ### Code Validation
 
 #### HTML Validation
 
-Pages were validating using the [W3 HTML Validator](https://validator.w3.org/nu/), and pages with content that varies based on guest/logged in user/admin status were validated in each state.
+Pages were validating using the [W3 HTML Validator](https://validator.w3.org/nu/) on Windows Chrome.
 
 <details>
 <summary>W3 HTML Validation</summary>
 
+<b>cart.html</b>
+
+![](docs/images/validation/cart-validation.jpg)
 
 
+<b>Checkout_success.html</b>
 
+![](docs/images/validation/checkout-success.jpg)
+
+<b>Checkout.html</b>
+
+![](docs/images/validation/checkout.jpg)
+
+The 7 errors related to the fact { was present due to Django being involved.
+No other errors
+
+<b>Index.html</b>
+
+![](docs/images/validation/index-validation.jpg)
+
+<b>Newsletter.html</b>
+
+![](docs/images/validation/newsletter-validation.jpg)
+
+Brevo Newsletter Form content left unchanged.
 
 
 </details>
@@ -473,42 +501,36 @@ Pages were validating using the [W3 HTML Validator](https://validator.w3.org/nu/
 
 The custom CSS was validated using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) as CSS level 3 + SVG. 
 
-![https://jigsaw.w3.org/css-validator/](https://jigsaw.w3.org/css-validator/images/vcss)
 
 
 File | Result |
 -----|--------|
-`base.css` | [✅ Pass](docs/images/validation/css-validation/base-css.jpg) |
-`checkout.css` | [✅ Pass](docs/images/validation/css-validation/checkout-css.jpg) |
-`glowCookies.css` | [✅ Pass](docs/images/validation/css-validation/glowCookies-css.jpg) |
+`base.css` | [✅ Pass](docs/images/validation/base-css.jpg) |
+`checkout.css` | [✅ Pass](docs/images/validation/checkout-css.jpg) |
+`profile.css` | [✅ Pass](docs/images/validation/profile-css.jpg) |
 
 
 #### Python Validation
 
-All the custom Python files pass PEP8 Validation, which I checked both in the development environment and on [CI Python Linter](https://pep8ci.herokuapp.com/).
+All the custom Python files passed PEP8 Validation using [CI Python Linter](https://pep8ci.herokuapp.com/).
 
-`# noqa` was used in `settings.py` where line breaks in strings would have broken Django functionality.
+`# noqa` was used in cases where line breaks in strings would have broken Django functionality.
 
 | App                | File | Result |
 |-------------|------------------|--------|
-|         | `settings.py`            | [✅ Pass](docs/images/validation/python-linter-results/coffeecrew-settings-py.jpg) |
-|         | `custom_storages.py`            | [✅ Pass](docs/images/validation/python-linter-results/custom-storages-py.jpg) |
-| Cart        | `adapters.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-adapters-py.jpg) |
-| Cart        | `context-processor.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-context-processor-py.jpg) |
-| cart        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-forms-py.jpg) |
-| cart        | `models.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-models-py.jpg) |
-| cart        | `set_cookie.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-set-cookie-py.jpg) |
-| cart        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-urls-py.jpg) |
-| cart        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/cart-views-py.jpg) |
-| checkout        | `admin.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-admin-py.jpg) |
-| checkout        | `emails.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-emails-py.jpg) |
-| checkout        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-forms-py.jpg) |
-| checkout        | `models.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-models-py.jpg) |
+|         | `settings.py`            | [✅ Pass](docs/images/validation/settings-py.jpg) |
+|         | `custom_storages.py`            | [✅ Pass](docs/images/validation/custom-storages-py.jpg) |
+| Cart        | `cart_tools.py`            | [✅ Pass](docs/images/validation/cart-tools.jpg)
+| Cart        | `context.py`            | [✅ Pass](docs/images/validation/context-py.jpg) | |
+| cart        | `views.py`            | [✅ Pass](docs/images/validation/cart-views-py.jpg) |
+| cart        | `urls.py`            | [✅ Pass](docs/images/validation/cart-urls-py.jpg) |
+| checkout        | `admin.py`            | [✅ Pass](docs/images/validation/checkout-admin-py.jpg) |
+| checkout        | `apps.py`            | [✅ Pass](docs/images/validation/checkout-apps-py.jpg) |
+| checkout        | `forms.py`            | [✅ Pass](docs/images/validation/checkout-admin-py.jpg) |
+| checkout        | `models.py`            | [✅ Pass](docs/images/validation/checkout-models-py.jpg) |
 | checkout        | `orders_urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-orders-urls-py.jpg) |
 | checkout        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-urls-py.jpg) |
 | checkout        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/checkout-views-py.jpg) |
-| coffeecrew        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/coffeecrew-urls-py.jpg) |
-| coffeecrew        | `StaffMemberRequiredMixin.py`            | [✅ Pass](docs/images/validation/python-linter-results/coffeecrew-StaffMemberRequiredMixin-py.jpg) |
 | home        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/home-forms-py.jpg) |
 | home        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/home-views-py.jpg) |
 | products        | `admin.py`            | [✅ Pass](docs/images/validation/python-linter-results/products-admin-py.jpg) |
@@ -523,11 +545,7 @@ All the custom Python files pass PEP8 Validation, which I checked both in the de
 | profiles        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-forms-py.jpg) |
 | profiles        | `models.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-models-py.jpg) |
 | profiles        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-urls-py.jpg) |
-| profiles        | `urls_wish_list.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-urls-wish-list-py.jpg) |
 | profiles        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/profiles-views-py.jpg) |
-| staff        | `forms.py`            | [✅ Pass](docs/images/validation/python-linter-results/staff-forms-py.jpg) |
-| staff        | `urls.py`            | [✅ Pass](docs/images/validation/python-linter-results/staff-urls-py.jpg) |
-| staff        | `views.py`            | [✅ Pass](docs/images/validation/python-linter-results/staff-views-py.jpg) |
 
 
 #### JavaScript
