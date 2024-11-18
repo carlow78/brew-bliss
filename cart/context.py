@@ -21,8 +21,8 @@ def cart_contents(request):
                 'quantity': item_data,
                 'product': product,
             })
-    
-    if request.path == '/checkout/': 
+
+    if request.path == '/checkout/':
         if total < settings.FREE_DELIVERY_THRESHOLD:
             delivery = 3.95
         else:
