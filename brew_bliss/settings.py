@@ -33,9 +33,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net','.herokuapp.com']
+ALLOWED_HOSTS = [
+    '8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net',
+    '.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-carlow78-brewbliss-tsq4xp953ow.ws.codeinstitute-ide.net'
+    ]
 
 
 # Application definition
@@ -51,21 +55,20 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
 
-    # Required by django-allauth - https://docs.allauth.org/en/dev/installation/quickstart.html
- 
+    # Required by django-allauth
     'allauth',
     'allauth.account',
 
-    
-    #PROJECT APPS
-    
+
+    # PROJECT APPS
+
     'home',
     'products',
     'cart',
     'checkout',
     'profiles',
 
-    #OTHER
+    # OTHER
 
     'crispy_forms',
     'crispy_bootstrap5',
@@ -82,7 +85,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-     # Add the account middleware:
+    # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -105,8 +108,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by django all-auth DON'T REMOVE
-                'django.contrib.auth.context_processors.auth', 
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.context.cart_contents',
@@ -125,19 +128,19 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # https://docs.allauth.org/en/dev/installation/quickstart.html
 
 AUTHENTICATION_BACKENDS = [
-    
+
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
-    
+
 ]
 
 SITE_ID = 1
 
-# Sends email verification to console from 
-# https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/ea7fe2688a0d97db4e469b672d5cb35e5835ff69/boutique_ado/settings.py
+# Sends email verification to console from
+# https://github.com/Code-Institute-Solutions/boutique_ado
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -183,7 +186,8 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -280,8 +284,3 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-
-
-
-
-
