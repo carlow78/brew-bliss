@@ -51,7 +51,7 @@
     + [Python Validation](#python-validation)
     + [JavaScript](#javascript)
 - [Deployment](#deployment)
-  * [ElephantSQL Database](#elephantsql-database)
+  * [PostgreSQL Database](#postgresql-database)
   * [Amazon AWS](#amazon-aws)
     + [S3 Bucket](#s3-bucket)
     + [IAM](#iam)
@@ -90,13 +90,11 @@ I designed the project with Agile management principles in mind, effectively uti
 I used [GitHub issues](https://github.com/carlow78/brew-bliss/issues) to track my user stories from planning to deployment. 
 
 
-I used the [Milestones feature](https://github.com/davidindub/coffeecrew/milestones) to plan sprints and set deadlines.
+I used the [Milestones feature](https://github.com/carlow78/brew-bliss/milestones) to plan sprints and set deadlines.
 
 ## User Stories
 
-User stories were prepared using GitHub Issues and assigned story points based on estimated completion time.
-
-User Stories can been seen below under [User Story Testing](#user-story-testing), and in the [GitHub Issues](https://github.com/davidindub/coffeecrew/issues?q=is%3Aissue+is%3Aclosed) for full details including screenshots, story points and associated sprints.
+User stories were prepared using GitHub Issues.
 
 ## UX
 
@@ -115,7 +113,7 @@ I had installed the latest version of Bootstrap (5.3), but due to an issue conne
 
 
 I used 'Sour Gummy' and 'Inter' font families from [Google Fonts](https://fonts.google.com/)
-. I like Sour Gummy for its playfulness and Inter for its clarity and readability.
+. I like Sour Gummy for its playfulness and Lato for its clarity and readability.
 
 
 ### Wireframes
@@ -159,161 +157,83 @@ The landing (index page) contains a table of different types of teas. The image 
 
 ### Header
 
-Starting from the top left, Store website name which is a hyperlink featuring throughout to site and when clicked returns the user to the home page(index).
+1. Starting from the top left, Store website name which is a hyperlink featuring throughout to site and when clicked returns the user to the home page(index).
 
-In the centre of the screen section a navbar with dropdown menus to browse All Products, Teas, and Accessories.
+2. In the centre of the screen section a navbar with dropdown menus to browse All Products, Teas, and Accessories. 
 
-Guests see links to Register or Login.
+On small screens (ie mobiles), this navbar moves to the top left in the style of a hamburger menu which expands to show the dropdown menu from above.
 
-Logged in Users will see their username as a dropdown containing:
-- My Account
-- My Orders
-- Log Out
+![](docs/images/mobile-hamburger.jpg)
 
-<details>
-<summary>
-Screenshot of dropdown for users
-</summary>
+3. In the middle of the header there is a 'Search' function which allows user to quickly find the item they want ie - Matcha Green Tea.
 
-![](docs/images/screenshots/screenshot-navbar-dropdown-for-users.png)
+4. Finally in the top right there is a Login and Shopping Cart icon made using Bootstrap Icons. 
 
-</details>
+The Login button allows user to register/login and when administrators are signed in and extra menu option Item management is added to the dropdown allowing items to be added to the store rather than using the Django admin panel.
 
-In addition to these, staff members have access to:
-- Manage Shop
-- Manage Products
-- Manage Orders
+On small screens (ie mobiles), the search and Login and cart button appear as icons this time using Font Awesome icons. 
 
-<details>
-<summary>
-Screenshot of dropdown for staff members
-</summary>
-
-![](docs/images/screenshots/screenshot-navbar-dropdown-for-staff.png)
-
-</details>
+![](docs/images/mobile-quick-links.jpg)
 
 
 ### Shopping Cart
 
 Guests and registered users can add products to their shopping cart, and the total of their cart is displayed clearly in the navbar on medium sized screen sizes and up.
 
-I implemented the cart for guest (non-signed in users) by linking their Session ID to a cart in the database. If they log in, the guest cart is merged into their profile's cart.
+![](docs/images/shopping-cart-total.jpg)
 
-See: [Django Docs - Sessions](https://docs.djangoproject.com/en/4.1/topics/http/sessions/)
-
-I added a way for staff to purge old (not updated in over two weeks) carts from the Database in the Staff Frontend.
-
-On the cart page, users can select if they would like their coffee beans ground.
-
-<details>
-<summary>
-Screenshots of Shopping Cart on mobile and desktop
-</summary>
-
-![](docs/images/screenshots/screenshot-mobile-cart.png)
-
-![](docs/images/screenshots/screenshot-cart.png)
-
-</details>
 
 ### Products List
 
+Products appear 4 across the page on large screens and thanks to bootstrap breakpoints reduces to 3 on ipads down, 2 and finally to 1 product per line on ie for mobile. 
 
-If you're on the page of a Department, you'll see links to click to get to the subcategories of that department.
+![](docs/images/product-desktop.jpg)
 
-A blurb/description accompanies the department or category.
+The products webpage also features a dropdown sort-by menu, allowing users to ie sort items by price, name etc. Only the Rating items does not function this feature is to come in a future update. 
 
-Sorting options are available to sort the list by:
-- Newest First
-- Name (A-Z)
-- Name (Z-A)
-- Price (Low to High)
-- Price (High to Low)
-
-If there are more than 8 products to display, the list is paginated to 8 per page and links to the different pages shown.
-
-<details>
-<summary>
-Screenshots of Product Detail page
-</summary>
-
-Products List with Sort Options:
-
-![](docs/images/screenshots/screenshot-products-list.png)
-
-
-List Pagination:
-![](docs/images/screenshots/screenshot-pagination.png)
-
-</details>
+![](docs/images/sort-by-dropdown.jpg)
 
 
 ### Product Detail Page
 
-Users can click the product's brand name to find more products from the same brand.
+When a user clicks on a product it opens the individual product's details page with more details about the product and allowing the user to add additional quantitites of the product. Each time the user add more quantites to the cart they see a message of their action and cart total increasing/decreasing depending on their action.
 
-If the product is out of stock, the add to cart button is disabled and replaced with a message.
+![](docs/images/product-detail.jpg)
 
-<details>
-<summary>
-Screenshots of Product Detail page
-</summary>
-
-![](docs/images/screenshots/screenshot-product-detail.png)
-
-![](docs/images/screenshots/screenshot-product-detail-out-of-stock.png)
-
-</details>
-
-**For Staff Only:**
-
-- Staff have access to the Product SKU and an Edit Product button.
 
 ### Register / Login
 
-Users can either sign up using their Google or directly on the site.
+Allows users to create and login to the website. Achieved using django-all auth and customised to match the team of the website.
 
-Users signing up with Google don't need to create a password.
+When a user registers for the first time they must verify their email address before being able to login.
 
-After signing up, users need to verify their account by clicking the link in the welcome email.
+![](docs/images/verify-email.jpg)
 
-Handy links to popular Email services are included for quick access.
-
-<details>
-<summary>
-Screenshot of Verification Email Sent page
-</summary>
-
-![](docs/images/screenshots/screenshot-verify-email-links.png)
-
-</details>
-
-### Wishlist
-
-Logged in users can save products to a wishlist for future reference.
 
 ### Checkout
 
-There are four stages to the checkout process, the customer can easily see what stage of the process they are at with the progress bar at the top. I used combination of bootstrap elements to make this semantic progress bar.
+When the user clicks on the cart located in the top right of the screen they are brought to cart view page showing all items in the cart.
 
-![](docs/images/screenshots/screenshot-checkout-progress.png)
+There are links to return the store and 'keep shopping' or proceed to a 'secure checkout' page.
 
-1. Review Order
-2. Shipping Address
-3. Billing Details
-4. Order Confirmation
+![](docs/images/checkout-stage1.jpg)
+
+# Secure checkout page
+
+When the user clicks on the 'secure checkout' link they are brought to the checkout view to fill out their delivery address details and credit card details (handled by Stripe).
+
+Once they fill out all the required details (their address and credit card  details). They can then click on the Complete Order button.
+
+The next stage of the process is handled by a Stripe webhook.
+
+![](docs/images/checkout-address.jpg)
 
 If the customer has a saved shipping address, they can populate the form with it by checking the box.
 
-Delivery cost is shown when the user has filled out their address.
+Stripe checks the credit card details and if they are valid processes the order is processed (achieved usin ag Stripe webhook).
 
-The Payment page clearly displays the total to be paid.
 
-All information related to Billing is handled by Stripe.
-If the user has a default billing address saved in their profile, it will be pre-populated in the Stripe form.
-
-Billing Address or Card details are **never** saved in the database.
+![](docs/images/stripe-payment.jpg)
 
 
 ### Notification Emails
@@ -322,229 +242,62 @@ An email is sent to the customer when they make a new order.
 
 I used Stripe's webhooks to only send the email when the payment is successfully completed.
 
-<details>
 
 <summary>Screenshot of an Order Confirmation Email</summary>
 
-![](docs/images/screenshots/screenshot-email-confirmed.jpg)
+![](docs/images/order-email-confirm.jpg)
 
-![](docs/images/screenshots/screenshot-mobile-email-confirmation.jpeg)
 
 </details>
 
-
-Another email is sent to the customer when their order is dispatched.
-
-<details>
-
-<summary>Screenshot of Customer Dispatch Email</summary>
-
-![](docs/images/screenshots/screenshot-email-dispatched.jpg)
-
-</details>
 
 ### Footer
 
 The Footer includes:
 
-- A link back to the homepage
-- Links to the Contact Us page.
-- A link to the Privacy Policy
-- A link to the [GitHub repository for the project](https://github.com/davidindub/coffeecrew).
+- A link to sign up for the website's newsletter (more on that later).
 
-I rearranged the sections on mobile to get the layout I wanted.
+- A link back to the Home (index) page.
 
-<details>
+- A link to the Browse our store (products view).
 
-<summary>Screenshot of Footer on mobile and desktop</summary>
+- A link to the website 3 social media outlets - all links are open in a new window.
 
-![](docs/images/screenshots/screenshot-mobile-footer.png)
-
-![](docs/images/screenshots/screenshot-footer.png)
-
-
-</details>
-
-### Privacy Policy
-
-As the project can collect data from users, I included a Privacy Policy link in the Footer which explains how data may be used. I used [GDPR.eu](https://gdpr.eu/) for help writing the policy.
-
-The Privacy Policy is also clearly displayed to users on their first visit in the Cookie Consent popup.
-
-
-See:
-[Writing a GDPR-compliant privacy notice (template included)](https://gdpr.eu/privacy-notice/)
-
-<details>
-<summary>
-Screenshot of Privacy Policy
-</summary>
-![](docs/images/screenshots/screenshot-privacy-policy.png)
-
-</details>
-
-### Cookie Consent Banner
-
-I implemented a cookie consent banner using handy code from [GDPR Compliant Cookie Consent Banner In JavaScript – GlowCookies](https://www.cssscript.com/gdpr-cookie-consent-banner/).
-
-This code is well set up to later implement analytics such as Google Analytics or Meta Pixel.
-
-<details>
-<summary>
-Screenshot of Cookie Consent banner
-</summary>
-![](docs/images/screenshots/screenshot-mobile-cookie-consent.jpeg)
-
-![](docs/images/screenshots/screenshot-cookie-consent.jpg)
-
-</details>
+![](docs/images/footer-links.jpg)
 
 
 ### Notifications
 
-Django Messages and Bootstrap's Alerts elements were combined to make elegant dismissible notification messages when the user performs actions.
+Django Messages (Toasts) and Bootstrap's Alerts elements were combined to make elegant dismissible notification messages when the user performs actions.
 
-<details>
-<summary>
-Screenshot of Notification alert
-</summary>
-![](docs/images/screenshots/screenshot-message-notifcations.png)
-</details>
+There are 4 alert messages.
+
+Info - information for the user
+
+Success - when the action was successful
+
+Warning - the action failed but may be immiment
+
+Error - action was not successful
+
+Source https://docs.djangoproject.com/en/5.1/ref/contrib/messages/
+
+Here is an example of a toast message on the website.
+
+![](docs/images/toast-success.jpg)
 
 ### Favicon
 
-![](static/images/favicons/android-chrome-192x192.png)
-
-I included metadata for favicons and web app icons
-
-I themed the browser window to match the site with the `theme-color <meta>` tag for browsers that support it such as Safari on macOS and Chrome on Android.
-
-
-<details>
-<summary>
-Screenshot of Themed Browser Window
-</summary>
-
-![](docs/images/screenshots/screenshot-themed-browser-safari.png)
-
-</details>
-
-
-## Staff Only Features
-
-### Shop Management Dashboard
-
-I wanted to create a front-end for a business owner to manage the store themselves without needing to code or enter the django-admin panel. I also protected fields in the django-admin panel that shouldn't be manually edited.
-
-Lists of products in the staff dashboard feature lots of extra sorting options to help with managing the shop:
-- Hidden First
-- On Display First
-- Stock (Low to High)
-- Stock (High to Low)
-- Sales (Low to High)
-- Sales (High to Low)
-- Oldest First
-- Newest First
-- Name (A-Z)
-- Name (Z-A)
-- Price (Low to High)
-- Price (High to Low)
-
-
-Staff members can also easily see stats about the shop such as number of orders, orders yet to dispatch, number of registered users, and more.
-
-Old unused guest carts can be purged from the database here to save on resources.
-
-<details>
-<summary>
-Screenshot of Shop Management Dashboard
-</summary>
-![](docs/images/screenshots/screenshot-manage-shop.png)
-
-Sort options for product list in staff dashboard:
-![](docs/images/screenshots/screenshot-staff-sort-products.png)
-</details>
-
-
-<details>
-<summary>
-More Screenshots of Shop Management
-</summary>
-
-Warning before deleting a Department that contains categories and products:
-
-![](docs/images/screenshots/screenshot-staff-delete-dept-warning.png)
-
-Stats, badge alerting to dispatch new orders:
-
-![](docs/images/screenshots/screenshot-shop-management-stats.png)
-
-</details>
-
-
-### Products Detail
-
-As a staff member, each product page includes the product's SKU and an edit button. Extra fields are displayed for coffees such as harvest year, weight and processed used.
-
-<details>
-<summary>
-Screenshot of editing a product as staff member
-</summary>
-![](docs/images/screenshots/screenshot-manage-shop-edit-product.png)
-</details>
-
-
-### Printable Order Sheets
-
-I used media queries to create a print friendly layout for Orders so they can be printed out as packing slips by the business owner.
-
-A Print Order button is included on the page for staff only.
-
-<details>
-<summary>
-Screenshots of Printable Order Sheet Feature
-</summary>
-
-![](docs/images/screenshots/screenshot-order-print-btn.jpg)
-
-![](docs/images/screenshots/screenshot-printable-order.jpg)
-
-</details>
-
-### Dispatch Orders
-
-The Order page also includes a button for staff members to mark an order as dispatched.
-
-<details>
-<summary>Screenshot of Dispatching a Customer Order</summary>
-![](docs/images/screenshots/screenshot-order-dispatch-button.jpg)
-![](docs/images/screenshots/screenshot-order-dispatched.jpg)
-</details>
-
-
-This updates the order in the database and sends the customer a dispatch notification email.
-
-
-<details>
-<summary>Screenshot of Customer Dispatch Email</summary>
-
-![](docs/images/screenshots/screenshot-email-dispatched.jpg)
-
-![](docs/images/screenshots/screenshot-mobile-order-dispatch-email.jpeg)
-</details>
+Created using a free tea cup clipart from [Pngtree](https://pngtree.com/so/tea-cup-clipart) and then converted to a favicon using [Favicon](https://favicon.io/favicon-converter/)
 
 
 
-### Custom Error Pages
+### Custom Error Page
 
-Custom error pages were added for 403, 404, and 500 errors.
+A Custom 404 was created for when a user tries to find an non existing webpage on the website.
 
-<details>
-<summary>Screenshot of custom 404 page</summary>
+![](docs/images/404-page.jpg)
 
-![](docs/images/screenshots/screenshot-404.jpg)
-
-</details>
 
 
 ### Features Left to Implement
@@ -553,14 +306,10 @@ Features I didn't get to implement in this iteration but plan to add in future i
 
 - Guests should be able to place orders without registering for an account
 - A Discount Code system or Option for time-based Sales
-- I would like migrate to using Stripe Checkout as some of these features like discount codes come built-in.
-- Control over Delivery Options and Costs through the staff dashboard. I didn't want these to be hard coded in but cut this feature due to time constraints.
-- Mailchimp could be connected to user profiles to include campaigns such as birthday emails with discounts, or follow up emails on completed orders.
+- Weight increments for Tea leaves/powder increasing by €2 per 100g.
 - A "recently viewed" carousel of products to follow the user around the site.
-- Sign in with Google, I had trouble getting this working error-free despite using it on previous projects. I will reinstate it in future.
-- Add a CAPTCHA or some other form of validation to Contact Us form to prevent abuse.
-
-See also: [#wont-fix Issues on GitHub](https://github.com/davidindub/coffeecrew/issues?q=is%3Aissue+is%3Aclosed+label%3Awontfix)
+- Sign in with Google
+- Add a CAPTCHA or some other form of validation
 
 ## Technologies Used
 
@@ -568,29 +317,20 @@ See also: [#wont-fix Issues on GitHub](https://github.com/davidindub/coffeecrew/
 - [Django](https://www.djangoproject.com) used as the Python framework for the site.
 - [pip](https://pip.pypa.io/en/stable/) for installing Python packages.
 - [Git](https://git-scm.com/) for version control.
-- [Sourcetree](https://www.sourcetreeapp.com/) for managing the remote repository.
 - [AWS S3](https://aws.amazon.com/s3) used for online static file storage.
 - [PostgreSQL](https://www.postgresql.org) used as the relational database management.
-- [ElephantSQL](https://www.elephantsql.com) used as the Postgres database.
 - [Heroku](https://www.heroku.com) used for hosting the deployed back-end site.
 - [GitHub](https://github.com/) for storing the repository online during development.
-- GitHub Projects was invaluable throughout the project and helped me keep track of things to do and bugs to fix - you can see [the project's board here](https://github.com/users/davidindub/projects/8).
 - [GitPod](https://gitpod.io/) as a cloud based IDE.
 - [Balsamiq](https://balsamiq.com/wireframes/) for wireframing.
-- [Bootstrap 5](https://getbootstrap.com/) as a front end framework.
+- [Bootstrap](https://getbootstrap.com/) as a front end framework.
 - [Google Chrome](https://www.google.com/intl/en_ie/chrome/), [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/new/) and [Safari](https://www.apple.com/safari/) for testing on macOS Monterey.
 - [Microsoft Edge](https://www.microsoft.com/en-us/edge) for testing on Windows 11.
 - [Safari](https://www.apple.com/safari/) on iOS and iPadOS 15.
 - [Google Chrome](https://www.google.com/intl/en_ie/chrome/) on Android 12.
-- [Miro](https://www.miro.com/) for drawing database diagrams.
-- [Mailchimp](https://mailchimp.com/) for newsletter subscription service.
-- [Copy.ai](https://www.copy.ai/) for inspiration for some of the slogans and headlines.
+- [DrawSQL](https://drawsql.app/) for drawing database diagrams.
+- [Brevo](https://brevo.com/) for newsletter subscription service.
 - [favicon.io](https://favicon.io/favicon-generator/) to make a favicon for site.
-- [Device Frames](https://deviceframes.com/) for the device mockups in this README.
-- [Meta Tags](https://metatags.io/) to prepare the Meta tags for social media share previews.
-- [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) used to help generate documentation.
-
-## External Python Packages Used
 
 
 ## Ecommerce Business Model
@@ -601,8 +341,7 @@ such as monthly/annual subscriptions.
 
 It is still in its early development stages, although it already has a newsletter, and links for social media marketing.
 
-Social media can potentially build a community of users around the business, and boost site visitor numbers,
-especially when using larger platforms such a Facebook.
+Social media can potentially build a community of users around the business, and boost site visitor numbers, especially when using larger platforms such a Facebook.
 
 A newsletter list can be used to send regular messages to site users who opt in, such as what items are on special offer, new items in stock. See [Newsletter Marketing](#newsletter-marketing) below.
 
@@ -616,26 +355,19 @@ I made sure to make use of semantic html so these keywords were picked up by sea
 
 ```html
 <meta name="title" content="Brew Bliss">
-<meta name="description" content="Dublin based specialty coffee roasters. Fresh coffee and premium brewing kit, fast shipping anywhere in Europe.">
+<meta name="description"
+            content="Luxury Tea suppliers based in Ireland. Tea leaves from across the globe. Your vibes, our leaves. Fast shipping worldwide. ">
 ```
 
 ### Metadata
 
 I included Metadata to ensure thumbnails and information is presented correctly when shared on Facebook, Twitter and other Social Media.
 
-<details>
-<summary>
-Screenshot of social cards preview
-</summary>
-
-![](docs/images/social-card-preview.png)
-
-</details>
 
 ### Sitemap
 
 I've used [XML-Sitemaps](https://www.xml-sitemaps.com) to generate a sitemap.xml file.
-This was generated using my deployed site URL: https://coffee-crew-shop.herokuapp.com
+This was generated using my deployed site URL: https://brew-bliss-1195cd6a337d.herokuapp.com/
 
 After it finished crawling the entire site, it created a
 [sitemap.xml](sitemap.xml) which I've downloaded and included in the repository.
@@ -647,22 +379,16 @@ Inside, I've included the settings:
 
 ```
 User-agent: *
-Disallow: /staff/
 Disallow: /checkout/
-Sitemap: https://coffee-crew-shop.herokuapp.com/sitemap.xml
+Sitemap: https://brew-bliss-1195cd6a337d.herokuapp.com/sitemap.xml
 ```
 
-Further links for future implementation:
-- [Google search console](https://search.google.com/search-console)
-- [Creating and submitting a sitemap](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap)
-- [Managing your sitemaps and using sitemaps reports](https://support.google.com/webmasters/answer/7451001)
-- [Testing the robots.txt file](https://support.google.com/webmasters/answer/6062598)
 
 ### Social Media Marketing
 
-Creating a strong social base (with participation) and linking that to the business site can help drive sales.
+Creating a strong social base and linking that to the business site can help drive sales.
 
-I included links in the footer which could be used for potential Facebook, Twitter, Instagram and TikTok presences for the business.
+I included links in the footer which could be used for potential Facebook, Twitter, and Instagram presences for the business.
 
 I've created a mockup Facebook business account using the
 [Balsamiq template](https://code-institute-org.github.io/5P-Assessments-Handbook/files/Facebook_Mockups.zip)
@@ -670,424 +396,62 @@ provided by Code Institute.
 
 <details>
 <summary>Facebook Page Mockup</summary>
-![](docs/images/facebook-mockup.png)
+![](docs/images/facebook-mockup.jpg)
 </details>
 
-For this business I envision a lot of the social media marketing being very visual, using the current most popular formats like Instagram Reels and TikTok. As these are primarily video based I did not mock any for the purposes of this coding project.
-However, I used royalty free photos in the project from Unsplash which I felt fit the vibe I would portray on social media, using soft focused earthy tone photos.
+All images are thanks to [Freepik](https://www.freepik.com/) and feature people enjoying tea.
+
 
 ### Newsletter Marketing
 
-I used [Mailchimp](https://mailchimp.com/) to set up a newsletter sign-up form on my application, to allow users to supply their
-email address if they are interested in learning more and to drive repeat business. As the small lot coffees regularly change, I felt a newsletter for coffee enthusiasts keeping them up to date would work well.
+I signed up and tried Mailchimp but when I copied the code for the embedded form to the website and inputted a brand new email which was never used on the website. The Feedback message from mailchimp stated the email address had already signed up which it hadn't. So I wanted to find an alternative. After further research I decided to try Brevo's free tier option. It's easy to use and I had the whole newsletter template created in 15 minutes and a further 15 minutes to set up a new newsletter webpage on the site. 
 
-I created a template of a potential welcome email and mapped out a potential customer journey in Mailchimp.
-There's a lot of power in Mailchimp, and campaigns could be set up such as a discount code near a customer's birthday, or integration with webhooks.
 
-<details>
-<summary>
-Screenshots of Mailchimp Campaign
-</summary>
+![](docs/images/newsletter.jpg)
 
-![](docs/images/newsletter-preview-1.jpg)
-
-![](docs/images/newsletter-preview-2.jpg)
+![](docs/images/subscribed.jpg)
 
 </details>
 
 
 ## Testing
 
-I performed extensive manual testing continuously as the project was being developed, and filed [bug reports on GitHub](https://github.com/davidindub/designland/issues?q=is%3Aissue+is%3Aclosed+label%3Abug) as issues were discovered to keep track of bugs. I kept track of how to recreate bugs, expected behaviour, screenshots of the issue and how it was resolved to help myself in future.
-
-I also asked friends to test registering accounts / making purchases / editing their profiles and report back to try and catch any potential issues.
-
-### Browser Compatibility
-
-I tested the website on four different operating systems on four different types of hardware and didn't find any rendering bugs or unexpected behaviour between the browsers tested.
-
-| Operating System | Chrome | Firefox | Edge | Safari |
-|------------------|--------|---------|------|--------|
-| macOS 13.2       | ✅      | ✅       | ✅    | ✅   |
-| Windows 11       | ✅      | ✅       | ✅    | N/A   |
-| Android 10       | ✅      | ✅       | ✅    | ✅   |
-| iOS & iPadOS 16.3  | N/A   | N/A       | N/A   | ✅   |
+I performed extensive manual testing continuously as the project was being developed. Fixing issues throughout the project.
 
 ### Responsiveness
 
-I tested for responsiveness on many different sized viewports from 320px wide up to Ultrawide resolutions, and using different hardware (Monitors, Laptops, Phones).
+I tested for responsiveness on many different sized viewports ie iPad, Android and using Google's Chrome Developer tools.
 
-I used [Polypane](https://polypane.app/) during development to test many different viewport sizes at once.
 
 ### Performance Testing
 
-Performance testing was done in Google Chrome on macOS.
+Performance testing was done in Google Chrome on a Windows 11 laptop.
 
 | Page 	| Performance 	| Accessibility 	| Best Practices 	| SEO 	|
 |---	|---	|---	|---	|---	|
-| [Landing Page (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-index.png) 	| 96 	| 98 	| 92 	| 100 	|
-| [Landing Page (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-index.png) 	| 98 	| 100 	| 92 	| 100 	|
-| [Products List (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-products.png) 	| 94 	| 98 	| 92 	| 100 	|
-| [Products List (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-products.png) 	| 98 	| 99 	| 92 	| 100 	|
-| [Product Detail (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-product-detail.png) 	| 84 	| 100 	| 92 	| 100 	|
-| [Product Detail (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-product-detail.png) 	| 97 	| 100 	| 92 	| 100 	|
-| [Privacy Policy (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-privacy.png) 	| 96 	| 98 	| 92 	| 100 	|
-| [Privacy Policy (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-privacy.png) 	| 99 	| 98 	| 92 	| 100 	|
-| [Manage Products (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-manage-products.png) 	| 90 	| 100 	| 83 	| 100 	|
-| [Manage Products (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-manage-products.png) 	| 98 	| 100 	| 92 	| 100 	|
-| [Manage Shop (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-manage-shop.png) 	| 99 	| 100 	| 92 	| 95 	|
-| [Manage Shop (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-manage-shop.png) 	| 94 	| 100 	| 92 	| 100 	|
-| [Contact (Mobile)](docs/images/validation/lighthouse-testing/lighthouse-mobile-contact.png) 	| 96 	| 100 	| 92 	| 100 	|
-| [Contact (Desktop)](docs/images/validation/lighthouse-testing/lighthouse-desktop-contact.png) 	| 98 	| 100 	| 92 	| 100 	|
 
-### Accessibility Testing
-
-No errors were detected using the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/report#/https://coffee-crew-shop.herokuapp.com/).
-
-<details>
-<summary>WAVE Web Accessibility Evaluation Tool Results</summary>
-
-![](docs/images/validation/wave-accessibility-report.png)
+| [Landing Page](docs/images/validation/lighthouse-landing.jpg 	| 97 	| 88 	| 100 	| 100 	|
+| [Products List](docs/images/validation/lighthouse-products.jpg) 	| 86 	| 85 	| 100 	| 100 	|
+| [Product Detail](docs/images/validation/lighthouse-product-view.jpg) 	| 94 	| 91 	| 96 	| 100 	|
+| [Manage Products](docs/images/validation/lighthouse-manage.jpg) 	| 94 	| 89 	| 100 	| 100 	|
 
 </details>
 
 
 ### User Story Testing
 
-<details>
-<summary>Easily login or log out</summary>
-As a **Site user** I should be able to **Easily login or log out** so that I can **Access my personal account information**
-
-### Acceptance Criteria
-
-- I can log into the site when not logged in
-- I can log out of the site from any page
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>View a list of products</summary>
-As a **shopper** I should be able to **view a list of products** so that I can **select some to purchase**
-
-### Acceptance Criteria
-
-- I can browse a list of products on the site
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>View individual products</summary>
-The user story should have a reason to exist: what do I need as the user described in the summary?
-This part details any detail that could not be passed by the summary.
-
-As a **Shopper** I should be able to **view individual products** so that I can **see the price, description, ratings, and images**
-
-### Acceptance Criteria
-
-- If I click an individual item I can see the price, description, ratings, and images of the item
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Total of basket</summary>
-The user story should have a reason to exist: what do I need as the user described in the summary?
-This part details any detail that could not be passed by the summary.
-
-As a **Shopper** I should be able to **Easily view the total of my basket at any time** so that I can **Keep track of what I spend**
-
-### Acceptance Criteria
-
-- I can quickly see the total of the items in my basket
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Easily register for an account</summary>
-As a **Site User** I should be able to **Easily register for an account** so that I can **Have an account with my details saved to save re-entering them**
-
-### Acceptance Criteria
-
-- I can register for an account with the site
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Personal User Profile</summary>
-As a **Registered User** I should be able to **have a personalised user profile page** so that I can **View my personal order history and save my payment information**
-
-### Acceptance Criteria
-
-- I can see my order history
-- [ ] I can save my payment information
-- I can update my account information
-- I can update my saved addresses 
-
-Payment information was offloaded to Stripe not to store any payment info in the database.
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Sort Product List</summary>
-
-As a **Site User** I should be able to **Sort the list of available products** so that I can **Easily identify the best rated, best price and categorically sorted products**
-
-### Acceptance Criteria
-
-- I can sort product list by categories such as price, or name
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>View Cart</summary>
-As a **Shopper** I should be able to **view the items in my cart** so that I can **Identify the total cost of my purchase and all the items I will receive**
-
-### Acceptance Criteria
-
-- I can see all the items in my cart and the total cost
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Adjust Quantity of Items in Cart</summary>
-As a **Shopper** I should be able to **Adjust the quantity of individual items in my bag** so that I can **Easily make changes to my purchase before checkout**
-
-### Acceptance Criteria
-
-- I can adjust the quantity of items in my cart
-- The total price updates
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Order Confirmation via Email</summary>
-As a **Shopper** I should be able to **Receive an email confirmation after checking out** so that I can **Keep the confirmation of what I've purchased for my records**
-
-### Acceptance Criteria
-
-- If I place an order successfully, I should receive an email confirmation
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Add a product</summary>
-As a **Store Owner** I should be able to **Add a product** so that I can **sell new items on my store**
-
-### Acceptance Criteria
-
-- I can add new items to the site (without using the Django Admin Panel)
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Add a Product</summary>
-As a **Store Owner** I should be able to **Add a product** so that I can **sell new items on my store**
-
-### Acceptance Criteria
-
-- I can add new items to the site (without using the Django Admin Panel)
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Edit Products</summary>
-As a **Store Owner** I should be able to **Edit/Update a product** so that I can **Change product prices, descriptions, images and other product criteria**
-
-### Acceptance Criteria
-
-- I can edit items on the site (without using the Django Admin Panel)
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Delete Products</summary>
-As a **Store Owner** I should be able to **delete a product** so that I can **remove items no longer on sale**
-
-### Acceptance Criteria
-
-- I can edit items on the site (without using the Django Admin Panel)
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Search Products</summary>
-
-As a **Shopper** I should be able to **Search for a product by name or description** so that I can **Find a specific product I'd like to purchase**
-
-### Acceptance Criteria
-
-- I can search for items available for purchase
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Wishlist / Favourite Items</summary>
-As a **Shopper** I should be able to **Save products to a wish list** so that I can **find them in future to purchase**
-
-### Acceptance Criteria
-
-- I can click a save/heart icon on an product page
-- I can see a list of all the products I have saved
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Select Grind for Coffee purchases</summary>
-As a **Customer** I should be able to **choose if or how I want my coffee ground** so that I can **receive the right coffee for brewing at home**
-
-### Acceptance Criteria
-
-- I can select a grind type while purchasing coffee
-- I can update the grind size in the cart
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Add to Cart as a Guest</summary>
-As a **Shopper without a registered account** I should be able to **add items to my cart** so that I can **decide if I want to buy them later**
-
-### Acceptance Criteria
-
-- Without being logged in, I can add items to my cart.
-- I click 'Add to cart' and the item is added to my cart
-- I can see a total of all my items in the nav bar
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Printable Order Docket</summary>
-As **the business owner** I should be able to **print a print-friendly order docket** so that I can **include it when dispatching orders by post**
-
-### Acceptance Criteria
-
-- If print the order page in the browser, I get a print-friendly page suitable to include for customers
-- It should include details about the customer's order and their address
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>USTORY</summary>
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Complete Order with Payment</summary>
-As a *Customer I should be able to **pay for my order with a card or Apple/Google Pay** so that I can **receive products from the business.**
-
-### Acceptance Criteria
-
-- If I enter my payment details correctly
-- My order is completed
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Email Customer when Order Dispatched</summary>
-As a **Shopper** I should be able to **Receive an email confirmation when my order is dispatched** so that I can **know when to expect my order*
-
-### Acceptance Criteria
-
-- I should receive an email when the shop has dispatched my order
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Password Recovery</summary>
-The user story should have a reason to exist: what do I need as the user described in the summary?
-This part details any detail that could not be passed by the summary.
-
-As a **Registered User** I should be able to **Easily recover my password in case I forget it** so that I can **Regain access to my account**
-
-### Acceptance Criteria
-
-- I can click 'Forgot Password' on the Login Page
-- I am able to reset my password and regain access to my account
-
-Tested 19/03/2022
-
-**Result:** ✅ Pass
-</details>
-
-<details>
-<summary>Guest cart items move to user cart on login</summary>
-As a **new registered used** I should be able to **see my cart items in my new profile**  so that I can **continue with placing an order**
-
-### Acceptance Criteria
-
-- I have items in my cart as a guest, and I register or log in
-- The items should still be in my cart (with any previous ones)
-
-**Result:** ✅ Pass
-</details>
+Completed throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
 
 ### Challenges Faced
 
-- I ended up revising the models more times than I expected during development, despite spending time planning them out in advance. As I built more interoperability between the different Django apps I found more properties and methods that I hadn't initially thought of.
+Initially, I had hoped to provide Tea Leaf/Weights with differenting weights allowing users to buy tea leaves/powders in 5 increments starting at 100,200,300,400,500g. The price increasing by 2 euros for each increment which I did achieve using a script but after nearly 2 days trying to get the context_process cart to update with increments when a user chooses 200-500g I couldnt resolve so I had to shelf the idea. 
+
+Inspiration for weighting tea -
+https://threespoons.ie/shop/tea/black-tea/assam-op-leaf-blend-black-tea/ 
+
+I had issues connecting to my AWS bucket from Heroku to access/store my static and media project files. Since the Walkthrough was recorded 4 years the steps to create AWS S3 and IAM has changed greatly. I contacted tutor support twice for my first session after an hour of troubleshooting with the Tutor he sent me an updated documentation of the process stored on Google Docs but still no joy. After my second tutor session lasting another 1 hour there was still no joy. Before finishing the session he suggested trying the steps again and maybe try to downgrade Django 4.2 (from 5.3) which thankfully resolved to issue but this issue had set me back more time (2 days and approx 50 redeployments to heroku) which I was running out of.
+
+Finally the last main issue I encountered was the navigation hamburger menu not expanding on mobile (smaller) screens. I finally got the issue resolved after downgrading bootstrap JS CDNs from 5.3 to 5.2 in the base.html corejs section after finding this [Youtube](https://www.youtube.com/watch?v=a-VSiUtMayM&t=42s) video.
 
 ### Code Validation
 
@@ -1098,31 +462,10 @@ Pages were validating using the [W3 HTML Validator](https://validator.w3.org/nu/
 <details>
 <summary>W3 HTML Validation</summary>
 
-Live links to the validator provided for pages as guests, pages requiring authentication checked by pasting rendered HTML from a logged in user into validator.
 
-| Page                | URL                | Logged In Status | Result                |
-|---------------------|--------------------|------------------|-----------------------|
-| Landing Page        | /                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/) |
-| Landing Page        | /                  | User            | ✅ No errors or warnings |
-| Shopping Cart        | /cart                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/cart/) |
-| Shopping Cart        | /cart                  | User w/cart items            | ❗️ 1 warning due to using different colspans for mobile/desktop, rendered page passes |
-| Department Page        | /shop/d/Equipment/                 | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/d/Equipment/) |
-| Products by Department Page        | /shop/d/Equipment/                  | User            | ✅ No errors or warnings |
-| Products by Category Page        | /shop/c/travel                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/c/travel/) |
-| Products by Brand Page        | /shop/b/kinto                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/b/kinto/) |
-| Sign Up Page        | /accounts/signup/                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/accounts/signup/) |
-| Login Page        | /accounts/login                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/accounts/login/) |
-| Log Out Page        | /accounts/logout                  | User            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/accounts/logout/) |
-| All Products List        | /                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/) |
-| Product Page, sorted        | /shop/?sort=date_added                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/?sort=date_added) |
-| Product Detail Page        | /item/sunrise                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https://coffee-crew-shop.herokuapp.com/shop/item/sunrise) |
-| My Account Page        | /account                  | Staff            | ✅ No errors or warnings |
-| My Orders Page        | /account/orders/                  | User            | ✅ No errors or warnings |
-| My Wishlist Page        | /wishlist                  | Staff            | [✅ No errors or warnings](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcoffee-crew-shop.herokuapp.com%2Fnewsletter) |
-| Manage Shop Page        | /staff                  | Staff            | ✅ No errors or warnings |
-| Manage Products Page        | /staff/products                  | Staff            | ✅ No errors or warnings |
-| Manage Orders Page        | /staff/orders                  | Staff            | ✅ No errors or warnings |
-| Privacy Policy Page        | /privacy                  | Guest            | [✅ No errors or warnings](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fcoffee-crew-shop.herokuapp.com%2Fprivacy#l324c6) |
+
+
+
 
 </details>
 
@@ -1201,20 +544,13 @@ File | Result |
 
 ## Deployment
 
-The live deployed application can be found deployed on [Heroku](https://coffee-crew-shop.herokuapp.com).
+The live deployed application can be found deployed on [Heroku](https://brew-bliss-1195cd6a337d.herokuapp.com/).
 
-### ElephantSQL Database
+### PostgreSQL from Code Instiute Database
 
-This project uses [ElephantSQL](https://www.elephantsql.com) for the PostgreSQL Database.
+This project uses for the PostgreSQL Database.
 
-To obtain your own Postgres Database, sign-up with your GitHub account, then follow these steps:
-
-- Click **Create New Instance** to start a new database.
-- Provide a name (this is commonly the name of the project: coffeecrew).
-- Select the **Tiny Turtle (Free)** plan.
-- You can leave the **Tags** blank.
-- Select the **Region** and **Data Center** closest to you.
-- Once created, click on the new database name, where you can view the database URL and Password.
+To obtain your own Postgres Database, use this https://dbs.ci-dbs.net/ input your registered email address used to sign up to Code Institute. (Each student can have a maximum of 8 which are deleted after 18 months). You will then receive your PostgreSQL database URL which can be used for your website.
 
 ### Amazon AWS
 
@@ -1456,28 +792,22 @@ If you'd like to backup your database models, use the following command for each
 
 You can clone the repository by following these steps:
 
-1. Go to the [GitHub repository](https://github.com/davidindub/coffeecrew) 
+1. Go to the [GitHub repository](https://github.com/carlow78/brew-bliss) 
 2. Locate the Code button above the list of files and click it 
 3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
 4. Open Git Bash or Terminal
 5. Change the current working directory to the one where you want the cloned directory
 6. In your IDE Terminal, type the following command to clone my repository:
-	- `git clone https://github.com/davidindub/coffeecrew.git`
+	- `git clone https://github.com/carlow78/brew-bliss.git`
 7. Press Enter to create your local clone.
 
-Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/davidindub/coffeecrew)
-
-Please note that in order to directly open the project in Gitpod, you need to have the browser extension installed.
-A tutorial on how to do that can be found [here](https://www.gitpod.io/docs/configure/user-settings/browser-extension).
 
 #### Forking
 
 By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository.
 You can fork this repository by using the following steps:
 
-1. Log in to GitHub and locate the [GitHub Repository](https://github.com/davidindub/coffeecrew)
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/carlow78/brew-bliss)
 2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
 
@@ -1486,25 +816,22 @@ You can fork this repository by using the following steps:
 
 ## Credits 
 
-### Content 
-- [Writing a GDPR-compliant privacy notice (template included)](https://gdpr.eu/privacy-notice/)
+### Content and Code
+Code Institute's [Boutique Ado Walkthrough](https://github.com/Code-Institute-Solutions/boutique_ado_v1/tree/master/) which I followed along with while coding this project. 
+Davidindublin [CoffeeCrew](https://github.com/davidindub/coffeecrew?tab=readme-ov-file) PP5 project for inspiration and coding tips and his readme which I have reused to create this readme file. 
+[Three Spoon's](https://threespoons.ie/) website which I used for inspiration as well tea descriptions and tea leaf images. 
 
-### Code
 
-- Pagination links adapted from [How to implement a paginator in a Django Class-based ListView compatible with Bootstrap 5](https://ourcodeworld.com/articles/read/1757/how-to-implement-a-paginator-in-a-django-class-based-listview-compatible-with-bootstrap-5)
-- SKU Generator adapted from [SKU Generator](https://github.com/saulacher/SKUgenerator)
-- Set cookie code from [Adding Items to Cart without Registering a Account by Dennis Ivy](https://www.youtube.com/watch?v=-7a8sth8gKo)
-- [Stack Overflow - Django rest auth user_logged_in signal](https://stackoverflow.com/questions/43300305/django-rest-auth-user-logged-in-signal)
-- Cookie Consent from [GDPR Compliant Cookie Consent Banner In JavaScript – GlowCookies](https://www.cssscript.com/gdpr-cookie-consent-banner/)
+
 
 ### Media
 
 - [Bootstrap Icons](https://icons.getbootstrap.com/) were used extensively in the project.
-- Some product images and descriptions edited from [Kinto Europe](https://kinto-europe.com/), [Moccamaster](https://www.moccamaster.eu/), [Hario](https://global.hario.com/).
+-[Three Spoon's](https://threespoons.ie/) for tea descriptions and tea leaf images.
 - Stock images from [Unsplash](https://unsplash.com/), thanks to photographers [Rodrigo Flores](https://unsplash.com/@rodrigoflores_photo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Nathan Dumlao](https://unsplash.com/photos/QLkjP_W4d7c?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Gerson Cifuentes](https://unsplash.com/photos/HmZCtvtS6ds?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Etty Fidele](https://unsplash.com/photos/oJpkjWcScyg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Taisiia Shestopa](https://unsplash.com/fr/@taisiia_shestopal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Milo Miloezger](https://unsplash.com/@miloezger?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), [Andrew Welch](https://unsplash.com/photos/1pZbNwlGzNY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText), and [Goran Ivos](https://unsplash.com/photos/f7MtheMfksk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) for their beautiful photos.
 
   
   
 ### Acknowledgements
 
-- Thank you to my CI Mentor [Tim Nelson](https://github.com/TravelTimN) for his help and suggestions.
+- Thank you to my CI Mentor [Precious Ijege] for his help and suggestions and the Slack Community.
