@@ -393,10 +393,9 @@ I've created a mockup Facebook business account using the
 [Balsamiq template](https://code-institute-org.github.io/5P-Assessments-Handbook/files/Facebook_Mockups.zip)
 provided by Code Institute.
 
-<details>
-<summary>Facebook Page Mockup</summary>
+
 ![](docs/images/facebook-mockup.jpg)
-</details>
+
 
 All images are thanks to [Freepik](https://www.freepik.com/) and feature people enjoying tea.
 
