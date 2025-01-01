@@ -102,12 +102,35 @@
   z-index: 99999999999;
 }
 
+.successcontainer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
 .custom-toast {
   overflow: visible;
 }
 
 .toast-capper {
   height: 2px;
+}
+
+.successcover {
+  background-image: url('/media/enjoy-tea.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; 
 }
 
 
