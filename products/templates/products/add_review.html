@@ -112,11 +112,12 @@
 
             <!-- Review Submission Form -->
             {% if request.user.is_authenticated %}
-                <h4>Add Your Review</h4>
+                <h4 class="text-dark bg-dark p-2 add-review-button">Add Your Review</h4>
                 <form method="post" action="{% url 'add_review' product.id %}">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-black">Submit Review</button>
+                    <button type="submit" class="btn btn-dark add-review-button">Submit Review</button>
+                    <br>
                     <br>
                 </form>
             {% else %}

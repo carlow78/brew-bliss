@@ -133,6 +133,13 @@
   z-index: -1; 
 }
 
+.add-review-button {
+  border-radius: 0.25rem; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+.add-review-button:hover {
+  background-color: #343a40; /* Darker shade on hover */
+}
 
 /* -------------------------------- Media Queries from CI Boutique Ado's Walkthrough */
 
