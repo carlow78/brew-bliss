@@ -102,7 +102,7 @@
                 <li class="list-group-item">
                     <strong>{{ review.user.username }}</strong> - {{ review.rating }} stars<br>
                     "{{ review.comment }}"<br>
-                    <em>Reviewed on {{ review.created_at|date:"F j, Y, g:i a" }}</em>
+                    <em>Reviewed on {{ review.created_at|date:"F j, Y" }}</em>
                 </li>
             {% endfor %}
         </ul>
