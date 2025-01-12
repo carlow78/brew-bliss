@@ -39,13 +39,16 @@
                             <i class="fas fa-tag mr-1"></i>{{ product.category.display_name }}
                         </a>
                     </p>
+                    <br>
                 {% endif %}    
-
-                {% if product.rating %}
-                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                {% else %}
-                    <small class="text-muted">No Rating</small>
-                {% endif %}
+                <form action="{% url 'add_to_wishlist' product.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-dark">
+                        <i class="fas fa-heart"></i> Add to Wishlist
+                    </button>
+                </form>
+                
+               <br><br>
                 {% if request.user.is_superuser %}
                     <small class="ml-3">
                         <a href="{% url 'edit_product' product.id %}">Edit</a> | 
