@@ -163,13 +163,14 @@ def delete_product(request, product_id):
 
     # Allow superuser only to add
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you have tried admin only request.')
+        messages.error(request, 'Sorry, you have tried an admin-only request.')
         return redirect(reverse('home'))
 
-        product = get_object_or_404(Product, pk=product_id)
-        product.delete()
-        messages.success(request, 'Product removed from store!')
-        return redirect(reverse('products'))
+    # If the user is a superuser, proceed with deleting the product
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product removed from store!')
+    return redirect('products') 
 
 @login_required
 def add_review(request, product_id):
