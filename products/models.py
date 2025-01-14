@@ -41,6 +41,9 @@ class Review(models.Model):
     def __str__(self):
         return f'Review by {self.user.username} on {self.product.name}'
 
+    class Meta:
+        unique_together = ('user', 'product')
+
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, related_name='wishlists')

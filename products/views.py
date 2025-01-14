@@ -179,6 +179,10 @@ def add_review(request, product_id):
     """Allow users to add a review for a product."""
     product = get_object_or_404(Product, pk=product_id)
 
+    if Review.objects.filter(user=request.user, product=product).exists():
+        messages.error(request, 'You have already submitted a review for this product.')
+        return redirect(reverse('product_detail', args=[product.id]))
+
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -199,7 +203,6 @@ def add_review(request, product_id):
     }
     
     return render(request, 'products/add_review.html', context)
-
 
 @login_required
 def delete_review(request, review_id):
