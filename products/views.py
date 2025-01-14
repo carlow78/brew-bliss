@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category, Wishlist
+from .models import Product, Category, Wishlist, Review
 from .forms import ProductForm, ReviewForm
 import logging
 
@@ -92,11 +92,13 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.reviews.all()
+    ratings_range = list(range(1, 6))
     form = ReviewForm()
 
     context = {
         'product': product,
          'reviews': reviews,
+         'ratings_range': ratings_range,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -197,6 +199,21 @@ def add_review(request, product_id):
     }
     
     return render(request, 'products/add_review.html', context)
+
+
+@login_required
+def delete_review(request, review_id):
+    """Allow users to delete their own review."""
+    review = get_object_or_404(Review, pk=review_id)
+
+    if review.user != request.user:
+        messages.error(request, "You do not have permission to delete this review.")
+        return redirect('product_detail', product_id=review.product.id)
+
+    review.delete()
+    messages.success(request, 'Your review has been deleted successfully.')
+    
+    return redirect('product_detail', product_id=review.product.id)
 
 
 @login_required

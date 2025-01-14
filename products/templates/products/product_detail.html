@@ -99,23 +99,42 @@
 <div class="col-12 mt-4">
     <h3>Reviews</h3>
 
+    {% if request.user.is_authenticated %}
     {% if reviews %}
-        <ul class="list-group">
-            {% for review in reviews %}
-                <li class="list-group-item">
-                    <strong>{{ review.user.username }}</strong> - {{ review.rating }} stars<br>
-                    "{{ review.comment }}"<br>
-                    <em>Reviewed on {{ review.created_at|date:"F j, Y" }}</em>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No reviews yet. Be the first to leave a review!</p>
-    {% endif %}
+    <ul class="list-group">
+        {% for review in reviews %}
+        <li class="list-group-item">
+            <strong>{{ review.user.username }}</strong> - 
+            <span class="rating">
+                {% for i in ratings_range %}
+                    {% if i <= review.rating %}
+                        <i class="fas fa-star"></i>  
+                    {% else %}
+                        <i class="far fa-star"></i> 
+                    {% endif %}
+                {% endfor %}
+            </span><br>
+            "{{ review.comment }}"<br>
+            <em>Reviewed on {{ review.created_at|date:"F j, Y" }}</em>
+            {% if request.user == review.user %}
+                <form action="{% url 'delete_review' review.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <br><br>
+                    <button type="submit" class="btn btn-danger btn-sm">Delete Review</button>
+                </form>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No reviews yet. Be the first to leave a review!</p>
+{% endif %}
+{% endif %}
 
     <!-- Link to Add Review Page -->
     {% if request.user.is_authenticated %}
         <p>
+            <br>
             <a href="{% url 'add_review' product.id %}" class="btn btn-dark add-review-button">Add Your Review</a>
         </p>
 
