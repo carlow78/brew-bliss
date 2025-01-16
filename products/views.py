@@ -86,19 +86,30 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
-
 def product_detail(request, product_id):
-    # A view to show individual product details
-
     product = get_object_or_404(Product, pk=product_id)
-    reviews = product.reviews.all()
+
+    # Fetch all reviews related to the product with user information
+    reviews = Review.objects.filter(product=product).select_related('user')
+    
+    # Define a range for ratings (1-5)
     ratings_range = list(range(1, 6))
+    
+    # Initialize review form
     form = ReviewForm()
 
+    # Check if user is authenticated and retrieve their review if it exists
+    user_review = None
+    if request.user.is_authenticated:
+        user_review = Review.objects.filter(product=product, user=request.user).first()   
+
+    # Prepare context for rendering
     context = {
         'product': product,
-         'reviews': reviews,
-         'ratings_range': ratings_range,
+        'reviews': reviews,
+        'ratings_range': ratings_range,
+        'user_review': user_review,
+        'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -203,6 +214,24 @@ def add_review(request, product_id):
     }
     
     return render(request, 'products/add_review.html', context)
+
+
+@login_required
+def edit_review(request, product_id, review_id):
+    
+    product = get_object_or_404(Product, id=product_id)
+    # Get the user's existing review for the product
+    user_review = get_object_or_404(Review, id=review_id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=user_review)  # Pre-fill with existing review
+        if form.is_valid():
+            form.save()  # Save updated review
+            return redirect('product_detail', product_id=product.id)  # Redirect after saving
+    else:
+        form = ReviewForm(instance=user_review)  # Populate form with existing review
+
+    return render(request, 'products/edit_review.html', {'form': form, 'product': product, 'user_review': user_review})
 
 @login_required
 def delete_review(request, review_id):

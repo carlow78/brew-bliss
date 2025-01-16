@@ -39,16 +39,13 @@
                             <i class="fas fa-tag mr-1"></i>{{ product.category.display_name }}
                         </a>
                     </p>
-                    <br>
                 {% endif %}    
-                <form action="{% url 'add_to_wishlist' product.id %}" method="POST" class="d-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-dark">
-                        <i class="fas fa-heart"></i> Add to Wishlist
-                    </button>
-                </form>
-                
-               <br><br>
+
+                {% if product.rating %}
+                    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                {% else %}
+                    <small class="text-muted">No Rating</small>
+                {% endif %}
                 {% if request.user.is_superuser %}
                     <small class="ml-3">
                         <a href="{% url 'edit_product' product.id %}">Edit</a> | 
@@ -96,64 +93,39 @@
         </div>
 
         <!-- Reviews Section -->
-<div class="col-12 mt-4">
-    <h3>Reviews</h3>
+        <div class="col-12 mt-4">
+            <h3>Reviews</h3>
 
-    {% if request.user.is_authenticated %}
-    {% if reviews %}
-    <ul class="list-group">
-        {% for review in reviews %}
-        <li class="list-group-item">
-            <strong>{{ review.user.username }}</strong> - 
-            <span class="rating">
-                {% for i in ratings_range %}
-                    {% if i <= review.rating %}
-                        <i class="fas fa-star"></i>  
-                    {% else %}
-                        <i class="far fa-star"></i> 
-                    {% endif %}
-                {% endfor %}
-            </span><br>
-            "{{ review.comment }}"<br>
-            <em>Reviewed on {{ review.created_at|date:"F j, Y" }}</em>
-            {% if request.user == review.user %}
-                <form action="{% url 'delete_review' review.id %}" method="post" style="display:inline;">
-                    {% csrf_token %}
-                    <br><br>
-                    <button type="submit" class="btn btn-danger btn-sm">Delete Review</button>
-                </form>
+            {% if reviews %}
+                <ul class="list-group">
+                    {% for review in reviews %}
+                        <li class="list-group-item">
+                            <strong>{{ review.user.username }}</strong> - {{ review.rating }} stars<br>
+                            "{{ review.comment }}"<br>
+                            <em>Reviewed on {{ review.created_at|date:"F j" }}</em>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet. Be the first to leave a review!</p>
             {% endif %}
-        </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No reviews yet. Be the first to leave a review!</p>
-{% endif %}
-{% endif %}
 
-    <!-- Link to Add Review Page -->
-    {% if user.is_authenticated %}
-        {% if user_review %}
-        <p>
-            <a href="{% url 'edit_review' product.id user_review.id %}" class="btn btn-dark">Edit Your Review</a>
-        </p>
-        {% else %}
-        <p>
-            <a href="{% url 'add_review' product.id %}" class="btn btn-dark add-review-button">Add Your Review</a>
-        </p>
-        
-        <!-- Review Submission Form -->
-        <form method="post" action="{% url 'add_review' product.id %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-            <br>
-       </form>
-       {% endif %}
+            <!-- Review Submission Form -->
+            {% if request.user.is_authenticated %}
+                <h4 class="text-dark bg-dark p-2 add-review-button">Edit Your Review</h4>
+                <form method="post" action="{% url 'edit_review' product.id user_review.id %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-dark">Update Review</button>
+                </form>
+                <br>
+                <a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">Cancel</a>
+            {% else %}
+                <p>Please log in to leave a review.</p>
+            {% endif %}
+        </div>
 
-    {% else %}
-            <p>Please log in to leave a review.</p>
-    {% endif %}
+    </div>
 </div>
 
     </div>
