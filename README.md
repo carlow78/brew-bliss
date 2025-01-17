@@ -831,7 +831,8 @@ Davidindublin [CoffeeCrew](https://github.com/davidindub/coffeecrew?tab=readme-o
 
 - [Bootstrap Icons](https://icons.getbootstrap.com/) were used extensively in the project.
 -[Three Spoon's](https://threespoons.ie/) for tea descriptions and tea leaf images.
-- Landing and newsletter images from [Freepik](https://freepik.com/),
+- Landing and newsletter images from [Freepik](https://freepik.com/).
+- Brew Bliss Logo created using [Canva Logo Creator](https://www.canva.com/create/logos/) and modified using GIMP Editor tool.
 - Accessories images from [Amazon](https:amazon.co.uk)
 
   
