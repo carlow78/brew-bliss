@@ -83,13 +83,17 @@
         <div id="topnav" class="row bg-secondary pt-lg-2 d-none d-lg-flex">
           <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
               <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                  <h2 class="logo-font text-black my-0"><strong>Brew Bliss</strong></h2>
+                <h2 class="logo-font text-black my-0">
+                    <img src="{% static 'images/brew-bliss-logo2.jpg' %}" alt="Brew Bliss Logo" style="height: 100px; vertical-align: middle;">
+                    
+                </h2>
+                
               </a>
           </div>
           <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
               <form method="GET" action="{% url 'products' %}">
                   <div class="input-group w-100">
-                      <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search website">
+                      <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search Brew Bliss">
                       <div class="input-group-append">
                         <button class="form-control bg-secondary rounded-0" type="submit">
                               <span class="icon">
