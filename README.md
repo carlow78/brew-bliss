@@ -229,7 +229,7 @@ The next stage of the process is handled by a Stripe webhook.
 
 If the customer has a saved shipping address, they can populate the form with it by checking the box.
 
-Stripe checks the credit card details and if they are valid processes the order is processed (achieved usin ag Stripe webhook).
+Stripe checks the credit card details and if they are valid processes the order is processed (achieved using a Stripe webhook).
 
 
 ![](docs/images/stripe-payment.jpg)
@@ -439,9 +439,34 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 </details>
 
 
-### User Story Testing
+### User Story/Functional Testing
 
-Completed throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
+User Stories were used throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
+
+<summary>View list of items #1</summary>
+
+As a <b>shopper</b> I can view list of items for sale so that <b>I can add to cart if I want to.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. All items are visible when View All Items is clicked
+2. Items are arranged in a readable manner and adapted to screen size
+
+Tasks Completed
+
+- [x] create urls.py
+
+- [x] create views.py
+
+- [x] add items app to settings.py
+
+- [x] Populate items.html
+
+- [x] Populate product_details.html
+
+- [x] Issue Status Closed - 18/11/24
+
+
 
 ### Challenges Faced
 
@@ -839,4 +864,4 @@ Davidindublin [CoffeeCrew](https://github.com/davidindub/coffeecrew?tab=readme-o
   
 ### Acknowledgements
 
-- Thank you to my CI Mentor [Precious Ijege] for his help and suggestions, CI's Tutor Support, Stackover and Slack Communities.
+- Thank you to my CI Mentor [Precious Ijege] for his help and suggestions, CI's Tutor Support, Django documentation, Bootstrap, You tube for tutorials and Stackover and CI's Slack Community.
