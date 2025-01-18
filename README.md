@@ -443,8 +443,8 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 
 User Stories were used throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
 
-<detail>
-<summary>View list of items #1</summary>
+<details>
+<summary>View list of items</summary>
 
 As a <b>shopper</b> I can view list of items for sale so that <b>I can add to cart if I want to.</b>
 
@@ -453,20 +453,12 @@ ACCEPTANCE CRITERIA:
 1. All items are visible when View All Items is clicked
 2. Items are arranged in a readable manner and adapted to screen size
 
-Tasks Completed
+-Tested 15/01/2025
 
-- [x] create urls.py
+**Result:** ✅ Pass
+</details>
 
-- [x] create views.py
-
-- [x] add items app to settings.py
-
-- [x] Populate items.html
-
-- [x] Populate product_details.html
-
-- [x] <b>Issue Status: Closed - 18/11/24 </b>
-</detail>
+</details>
 
 
 
