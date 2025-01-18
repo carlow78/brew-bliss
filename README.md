@@ -443,6 +443,7 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 
 User Stories were used throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
 
+<detail>
 <summary>View list of items #1</summary>
 
 As a <b>shopper</b> I can view list of items for sale so that <b>I can add to cart if I want to.</b>
@@ -464,7 +465,8 @@ Tasks Completed
 
 - [x] Populate product_details.html
 
-- [x] Issue Status Closed - 18/11/24
+- [x] <b>Issue Status: Closed - 18/11/24 </b>
+</detail>
 
 
 
