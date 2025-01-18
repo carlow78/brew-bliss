@@ -439,9 +439,24 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 </details>
 
 
-### User Story/Functional Testing
+### User Story/Functionality Testing
 
 User Stories were used throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
+
+<details>
+<summary>New user account registration</summary>
+
+As a <b>user</b>, <b>I can register for a new account</b> so that <b>I can save my details to speed up future transactions on the website</b>.
+
+ACCEPTANCE CRITERIA:
+
+1. Offer a new user the facility to Register
+2. New user can create valid username and password
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
 
 <details>
 <summary>View list of items</summary>
@@ -453,11 +468,175 @@ ACCEPTANCE CRITERIA:
 1. All items are visible when View All Items is clicked
 2. Items are arranged in a readable manner and adapted to screen size
 
--Tested 15/01/2025
+Tested 15/01/2025
 
 **Result:** ✅ Pass
 </details>
 
+<details>
+<summary>View an individual item</summary>
+
+As a <b>shopper</b> I can <b>select an item individually</b> so that <b>I can read more about it.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. I can click on an item to view more details
+2. Responds to different screen sizes
+3. Rating information included
+4. Select the number of items I want
+5. Add item to cart
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Search feature</summary>
+
+As a <b>site user</b> I can <b>search the website</b> so that <b>I can locate item(s)</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Search bar in header section
+2. Placeholder text describing feature
+3. Search returns items matching user inputted text
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Search feature</summary>
+
+As a <b>site user</b> I can <b>search the website</b> so that <b>I can locate item(s)</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Search bar in header section
+2. Placeholder text describing feature
+3. Search returns items matching user inputted text
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>View item(s) in shopping cart</summary>
+
+As a <b>site user</b> I can <b>view all items</b> so that <b>I can see the total amount I have in it and how much I need to add to qualify for FREE DELIVERY (if desired).</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Bag icon/link visible
+2. Total amount in my basket (including delivery if applicable)
+3. Amount remaining to qualify for FREE DELIVERY (if applicable)
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Sort view</summary>
+
+As a <b>site user</b> I can <b>view all items</b> so that <b>I can see the total amount I have in it and how much I need to add to qualify for FREE DELIVERY (if desired).</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Dropdown menu allowing users to sort by different categories
+2. View changes based on what selected from dropdown
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Notification messages after user actions</summary>
+
+As a <b>site user</b> I can <b>view messages</b> so that <b>confirm my action as been successfully performed or if more details are needed and what is missing.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. User sees notifications to confirm after they performed an action in the website
+2. User can close the message when they click on the x (close) button
+
+Tested 15/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Credit card purchasing/Order Confirmation/Confirmation email after successful purchase</summary>
+
+Part 1: As a <b>site user</b> I can <b>enter my delivery address and credit card details</b> so that <b>I can buy item(s) I require</b>
+Part 2: As a <b>site user</b> I can <b>aspect to see a confirmation page</b> so that <b>I can view the order details.</b>
+Part 3: As a <b>site user</b> I can <b>expect to receive a confirmation email</b> so that <b>I have a record of the purchase.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Provide checkout forms - delivery form, credit card form
+2. Install stripe and create webhook
+3. Order confirmation page
+4. Email is sent to user once their order is paid using credit card
+
+Tested 15/01/2025 (More details of testing performed please see [Checkout](#checkout) section)
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Add Product(s) to Wishlist</summary>
+
+As a <b>site user</b>, I can add a product(s) to a wishlist page so that Ican buy later, ie: when I can afford to buy
+
+ACCEPTANCE CRITERIA:
+
+1. Add Wishlist button on Product Detail page
+2. Add Wishlist View - View/Delete
+3. Test using a signed-in user can view their wishlist from their account page/user must be signed in to add item to wishlist
+
+Tested 15/01/2025
+
+[Wishlist](docs/images/wishlist-view.jpg) 
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Add Product(s) to Wishlist</summary>
+
+As a <b>site user</b>, I can add a product(s) to a wishlist page so that Ican buy later, ie: when I can afford to buy
+
+ACCEPTANCE CRITERIA:
+
+1. Add Wishlist button on Product Detail page
+2. Add Wishlist View - View/Delete
+3. Test using a signed-in user to add item then view their wishlist from their account page/validate that a user must be signed in to add item to wishlist
+
+Tested 15/01/2025
+
+[Wishlist](docs/images/wishlist-view.jpg) 
+
+**Result:** ✅ Pass
+</details>
+
+<summary>Review Product</summary>
+
+As a <b>site-user</b> I can <b>review a product</b> so that I can <b>provide my opinion of the product for others to view</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Add ability for a signed-in user (only) to provide reviews
+
+Tested 15/01/2025
+
+[Wishlist](docs/images/wishlist-view.jpg) 
+
+**Result:** ✅ Pass
 </details>
 
 
