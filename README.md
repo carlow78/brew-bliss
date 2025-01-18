@@ -439,7 +439,7 @@ Performance testing was done in Google Chrome on a Windows 11 laptop.
 </details>
 
 
-### User Story/Functionality Testing
+### User Story Functionality Testing
 
 User Stories were used throughout the development of the project and tracked using [Github Issues](https://github.com/carlow78/brew-bliss/issues?q=is%3Aissue+is%3Aclosed)
 
@@ -585,7 +585,8 @@ ACCEPTANCE CRITERIA:
 
 Tested 18/01/2025
 
-! [Wishlist](docs/images/wishlist-view.jpg) 
+![](docs/images/wishlist-view.jpg) 
+
 
 **Result:** ✅ Pass
 </details>
@@ -597,14 +598,48 @@ As a <b>site-user</b> I can <b>review a product</b> so that I can <b>provide my 
 
 ACCEPTANCE CRITERIA:
 
-1. Add ability for a signed-in user (only) to provide reviews
+1. Add ability for a signed-in user (only) to provide reviews. User is brought to the signing page if they are not logged in/registered.
 
 Tested 18/01/2025
 
-![](docs/images/wishlist-view.jpg) 
+![](docs/images/review-view.jpg) 
 
 **Result:** ✅ Pass
 </details>
+
+<details>
+<summary>Contact Us</summary>
+
+As a <b>site user</b>, I can <b></b>contact the site owner/staff so that I can <b>reach out about any query I may have. ie: Benefits of a store product.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Provide Link to Contact Us in Footer section
+Contact Us Form for user to fill in their contact details for corresponding to their query
+
+Tested 18/01/2025
+
+**Result:** ✅ Pass
+</details>
+
+<details>
+<summary>Contact Us - Admin View</summary>
+
+As a <b>site owner/member of staff</b>, I can <b>view any contact us messages so that I can respond to customer queries.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Create an admin view to view Customer queries in the store backend
+
+Tested 18/01/2025
+
+**Result:** ✅ Pass
+
+![](docs/images/contactus-admin-view.jpg) 
+
+
+</details>
+
 
 
 
