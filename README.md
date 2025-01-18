@@ -508,22 +508,6 @@ Tested 15/01/2025
 </details>
 
 <details>
-<summary>Search feature</summary>
-
-As a <b>site user</b> I can <b>search the website</b> so that <b>I can locate item(s)</b>
-
-ACCEPTANCE CRITERIA:
-
-1. Search bar in header section
-2. Placeholder text describing feature
-3. Search returns items matching user inputted text
-
-Tested 15/01/2025
-
-**Result:** ✅ Pass
-</details>
-
-<details>
 <summary>View item(s) in shopping cart</summary>
 
 As a <b>site user</b> I can <b>view all items</b> so that <b>I can see the total amount I have in it and how much I need to add to qualify for FREE DELIVERY (if desired).</b>
@@ -599,31 +583,14 @@ ACCEPTANCE CRITERIA:
 2. Add Wishlist View - View/Delete
 3. Test using a signed-in user can view their wishlist from their account page/user must be signed in to add item to wishlist
 
-Tested 15/01/2025
+Tested 18/01/2025
 
-[Wishlist](docs/images/wishlist-view.jpg) 
+! [Wishlist](docs/images/wishlist-view.jpg) 
 
 **Result:** ✅ Pass
 </details>
 
 <details>
-<summary>Add Product(s) to Wishlist</summary>
-
-As a <b>site user</b>, I can add a product(s) to a wishlist page so that Ican buy later, ie: when I can afford to buy
-
-ACCEPTANCE CRITERIA:
-
-1. Add Wishlist button on Product Detail page
-2. Add Wishlist View - View/Delete
-3. Test using a signed-in user to add item then view their wishlist from their account page/validate that a user must be signed in to add item to wishlist
-
-Tested 15/01/2025
-
-[Wishlist](docs/images/wishlist-view.jpg) 
-
-**Result:** ✅ Pass
-</details>
-
 <summary>Review Product</summary>
 
 As a <b>site-user</b> I can <b>review a product</b> so that I can <b>provide my opinion of the product for others to view</b>
@@ -632,9 +599,9 @@ ACCEPTANCE CRITERIA:
 
 1. Add ability for a signed-in user (only) to provide reviews
 
-Tested 15/01/2025
+Tested 18/01/2025
 
-[Wishlist](docs/images/wishlist-view.jpg) 
+![](docs/images/wishlist-view.jpg) 
 
 **Result:** ✅ Pass
 </details>
