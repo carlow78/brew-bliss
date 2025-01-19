@@ -144,9 +144,7 @@
             <br>
         </p>
         {% else %}
-        <p>
-            <a href="{% url 'add_review' product.id %}" class="btn btn-dark add-review-button">Add Your Review</a>
-        </p>
+        <br>
         
         <!-- Review Submission Form -->
         <form method="post" action="{% url 'add_review' product.id %}">
