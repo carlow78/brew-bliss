@@ -629,7 +629,7 @@ As a <b>site owner/member of staff</b>, I can <b>view any contact us messages so
 
 ACCEPTANCE CRITERIA:
 
-1. Create an admin view to view Customer queries in the store backend
+1. Create an admin view to view Customer queries in the store backend.
 
 Tested 18/01/2025
 
@@ -637,11 +637,131 @@ Tested 18/01/2025
 
 ![](docs/images/contactus-admin-view.jpg) 
 
+</details>
+
+
+<details>
+<summary>Add Item to Shop</summary>
+
+As a <b>site owner</b> I can add a new item to the store so that I can generate further revenue.
+
+ACCEPTANCE CRITERIA:
+
+1. Facility for site owner to add item to shop
+2. New item is visible on site (once all required fields are filled in)
+3. New item is added to database
+4. Option to add item using frontend and backend (admin view)
+
+Steps:
+1. Sign in as admin user
+2. Click on User Account Icon in Top Right
+3. Fill in all form with the details of new item
+4. Click Save - item is now added to store in the Category selected
+
+
+![](docs/images/validation/add-item-step2.jpg) 
+
+![](docs/images/validation/add-item-step4.jpg) 
+
+![](docs/images/validation/add-item-result.jpg) 
+
+
+Tested 19/01/2025
+
+**Result:** ✅ Pass
 
 </details>
 
 
+<details>
+<summary>Update a Product Details</summary>
 
+As a <b>site owner</b> I can <b>adjust item(s)</b> so that <b>content is up to date i.e reduce/increase item pricing</b>
+
+ACCEPTANCE CRITERIA:
+
+1.Asset management facility allowing site owner to amend item(s)
+2. Only logged in site owner/admin can alter items
+
+Steps:
+1. Sign in as admin user
+2. Click on User Account Icon in Top Right
+3. Browse to item you wish to update in Store
+4. Click on Edit hyperlink under the item you wish to update
+5. Update content and click edit product to save changes. 
+
+
+![](docs/images/validation/edit-item-step.jpg)
+
+![](docs/images/validation/edit-item-result.jpg)
+
+
+Tested 19/01/2025
+
+**Result:** ✅ Pass
+
+
+</details>
+
+<details>
+<summary>Update a Product Details</summary>
+
+As a <b>site owner</b> I can <b>adjust item(s)</b> so that <b>content is up to date i.e reduce/increase item pricing</b>
+
+ACCEPTANCE CRITERIA:
+
+1.Asset management facility allowing site owner to amend item(s)
+2. Only logged in site owner/admin can alter items
+
+Steps:
+1. Sign in as admin user
+2. Click on User Account Icon in Top Right
+3. Browse to item you wish to update in Store
+4. Click on Edit hyperlink under the item you wish to update
+5. Update content and click edit product to save changes. 
+
+
+![](docs/images/validation/edit-item-step.jpg)
+
+![](docs/images/validation/edit-item-result.jpg)
+
+
+Tested 19/01/2025
+
+**Result:** ✅ Pass
+
+<b>Note: Add, edit and delete can also performed in the backend using django admin.</b>
+
+</details>
+
+<details>
+<summary>Delete an item from store</summary>
+
+As a <b>site owner</b> I can <b>delete an item from the store</b> so that <b>(a) site user(s) cannot add it to their cart(s) i.e since its no longer available to sell or sold out.</b>
+
+ACCEPTANCE CRITERIA:
+
+1. Facility to allow site owner/admin to delete an item from the store
+2. When deleted item is removed from the site
+3. Database is updated with item no longer in it
+
+Steps:
+1. Sign in as admin user
+2. Click on User Account Icon in Top Right
+3. Browse to item you wish to delete from the Store
+4. Click on Delete hyperlink under the item you wish to delete
+5. Product has been removed from the website. Message is displayed to confirm its been deleted.
+
+![](docs/images/validation/delete-item-step.jpg)
+
+
+Tested 19/01/2025
+
+**Result:** ✅ Pass
+
+<b>Note: Add, edit and delete can also performed in the backend using django admin.</b>
+
+</details>
 
 ### Challenges Faced
 
