@@ -785,7 +785,7 @@ Finally the last main issue I encountered was the navigation hamburger menu not 
 
 ## Bug Fixing
 
-Throughout, the development of bug fixes were implemented, all fixes were committed to github starting with "fix: ... " and can be viewed here -
+Throughout, the development of the website bugs were fixed when possible, all fixes were committed to github starting with "fix: ... " and can be viewed here -
 https://github.com/search?q=repo%3Acarlow78%2Fbrew-bliss+fix&type=commits 
 
 
