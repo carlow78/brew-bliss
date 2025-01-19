@@ -783,6 +783,11 @@ I had issues connecting to my AWS bucket from Heroku to access/store my static a
 
 Finally the last main issue I encountered was the navigation hamburger menu not expanding on mobile (smaller) screens. I finally got the issue resolved after downgrading bootstrap JS CDNs from 5.3 to 5.2 in the base.html corejs section after finding this [Youtube](https://www.youtube.com/watch?v=a-VSiUtMayM&t=42s) video.
 
+## Bug Fixing
+
+Throughout, the development of bug fixes were implemented, all fixes were committed to github starting with "fix: ... " and can be viewed here -
+https://github.com/search?q=repo%3Acarlow78%2Fbrew-bliss+fix&type=commits 
+
 
 ### Code Validation
 
