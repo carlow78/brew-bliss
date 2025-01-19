@@ -573,36 +573,43 @@ Tested 15/01/2025 (More details of testing performed please see [Checkout](#chec
 </details>
 
 <details>
-<summary>Add Product(s) to Wishlist</summary>
+<summary> Add Item to Wishlist, View Wishlist, View a Product in Wishlist, Delete Product from Wishlist</summary>
 
-As a <b>site user</b>, I can add a product(s) to a wishlist page so that Ican buy later, ie: when I can afford to buy
+As a <b>site user</b>, I can <b> add a product to my wishlist, view all products in my wishlist, view item in wishlist, delete item from my wishlist </b>
 
-ACCEPTANCE CRITERIA:
+ACCEPTANCE CRITERIA/Steps:
 
 1. Add Wishlist button on Product Detail page
-2. Add Wishlist View - View/Delete
-3. Test using a signed-in user can view their wishlist from their account page/user must be signed in to add item to wishlist
+2. View items in My Wishlist via User Account menu
+3. View an item in My Wishlist by clicking 'View Product' button
+4. Delete an item from Wishlist by clicking 'Remove' button
 
-Tested 18/01/2025
+Tested 19/01/2025
 
 ![](docs/images/wishlist-view.jpg) 
-
+1[](docs/images/validation/delete-item-wishlist.jpg) 
 
 **Result:** ✅ Pass
 </details>
 
 <details>
-<summary>Review Product</summary>
+<summary>Review Product/Edit Review/Delete Review</summary>
 
-As a <b>site-user</b> I can <b>review a product</b> so that I can <b>provide my opinion of the product for others to view</b>
+As a <b>site-user</b> I can <b>review a product</b> so that I can <b>provide my opinion of the product for others to view. I can update my review if I desire and I can delete the review if I desire.</b>.
 
-ACCEPTANCE CRITERIA:
+ACCEPTANCE CRITERIA/Steps:
 
 1. Add ability for a signed-in user (only) to provide reviews. User is brought to the signing page if they are not logged in/registered.
+2. Once logged in a user can add their review on a individual product detail page.
+3. I can update my review using the Edit Review (and cannot update anyone elses review)
+4. I can delete the review.
 
 Tested 18/01/2025
 
 ![](docs/images/review-view.jpg) 
+![](docs/images/validation/edit-review.jpg) 
+![](docs/images/validation/edit-delete-review.jpg) 
+
 
 **Result:** ✅ Pass
 </details>
