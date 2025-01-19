@@ -92,10 +92,7 @@
 
 }
 
-.btn-custom-small {
-  padding: 0.25rem 0.5rem; /* Adjust padding for smaller buttons */
-  font-size: 0.75rem; /* Smaller font size */
-}
+
 
 /* ------------------------------- bootstrap toasts from CI's Boutique Ado's Walkthrough */
 
@@ -126,7 +123,7 @@
 }
 
 .successcover {
-  background-image: url('/media/enjoy-tea.jpg'); 
+  background: url('/media/enjoy-tea.jpg'); 
   background-size: cover; 
   background-position: center; 
   position: absolute;
