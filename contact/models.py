@@ -1,9 +1,11 @@
 from django.db import models
 from django.utils import timezone
 
+
 class ContactUs(models.Model):
     """
-    A model for storing user inquiries or feedback submitted through the websites contact form.
+    A model for storing user inquiries or feedback submitted
+    through the websites contact form.
     """
     name = models.CharField(max_length=100)
     email = models.EmailField()

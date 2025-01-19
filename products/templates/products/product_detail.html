@@ -79,8 +79,7 @@
                                 <button class="btn btn-outline-secondary btn-sm" type="button" id="increment" aria-label="Increase quantity">+</button>
                             </div>
                         </div>
-                    </div>
-                </form>            
+                    </div>           
                         
                         <div class="action-buttons d-flex justify-content-between">
                             <a href="{% url 'products' %}" class="btn btn-outline-dark">
@@ -163,6 +162,7 @@
 </div>
 
 {% endblock %}
+
 {% block postloadjs %}
 <script>
     // JavaScript to handle increment and decrement for product quantity 

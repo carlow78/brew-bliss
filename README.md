@@ -824,6 +824,11 @@ No other errors
 
 Brevo Newsletter Form content left unchanged.
 
+<b>Contact.html</b>
+
+![](docs/images/validation/validation-contact-us.jpg)
+
+Errors ignored due to Django urls being used on webpage.
 
 </details>
 
@@ -862,6 +867,11 @@ All the custom Python files passed PEP8 Validation using [CI Python Linter](http
 | checkout        | `urls.py`            | [✅ Pass](docs/images/validation/checkout-urls-py.jpg) |
 | checkout        | `views.py`            | [✅ Pass](docs/images/validation/checkout-views-py.jpg) |
 | checkout        | `webhook_handlers.py`            | [✅ Pass](docs/images/validation/checkout-webhook-handler-py.jpg) |
+| contact       | `admin.py`            | [✅ Pass](docs/images/validation/contact-admin-py.jpg) |
+| contact         | `forms.py`            | [✅ Pass](docs/images/validation/contact-form-py.jpg) |
+| contact       | `models.py`            | [✅ Pass](docs/images/validation/contact-model-py.jpg) |
+| contact        | `urls.py`            | [✅ Pass](docs/images/validation/contact-url-py.jpg) |
+| contact        | `views.py`            | [✅ Pass](docs/images/validation/contact-view-py.jpg) |
 | home        | `views.py`            | [✅ Pass](docs/images/validation/home-views-py.jpg) |
 | products        | `admin.py`            | [✅ Pass](docs/images/validation/products-admin-py.jpg) |
 | products        | `forms.py`            | [✅ Pass](docs/images/validation/products-form-py.jpg) |
